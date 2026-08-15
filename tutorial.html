@@ -1,0 +1,2533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>🌟 Littlestar — The Complete Definitive Guide</title>
+  <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#facc15">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Littlestar">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+
+      <!-- Register Service Worker -->
+      <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('service-worker.js')
+              .then(reg => console.log('🌟 Littlestar PWA ready!'))
+              .catch(err => console.log('SW failed:', err));
+          });
+        }
+      </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--gold:#facc15;--gold-l:#fde68a;--bg:#0f0f1e;--bg2:#1a1a2e;--text:#f0f0f5;--muted:#9ca3af;--green:#4ade80;--pink:#f472b6;--blue:#60a5fa;--purple:#a78bfa;--red:#f87171;--orange:#fb923c;--teal:#2dd4bf}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    #sidebar{position:fixed;top:0;left:0;width:280px;height:100vh;background:rgba(0,0,0,.7);border-right:1px solid rgba(250,204,21,.15);overflow-y:auto;z-index:100;padding:0 0 40px;backdrop-filter:blur(12px)}
+    #sidebar::-webkit-scrollbar{width:4px}
+    #sidebar::-webkit-scrollbar-thumb{background:rgba(250,204,21,.2);border-radius:4px}
+    #sidebar-logo{padding:20px;border-bottom:1px solid rgba(250,204,21,.15);font-size:1.15rem;font-weight:800;background:linear-gradient(90deg,#facc15,#fde68a);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:sticky;top:0;z-index:10;background-color:rgba(0,0,0,.85)}
+    #sidebar nav a{display:block;padding:6px 20px;color:var(--muted);text-decoration:none;font-size:12px;transition:all .15s;border-left:3px solid transparent}
+    #sidebar nav a:hover{color:var(--gold);background:rgba(250,204,21,.05)}
+    #sidebar nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(250,204,21,.08)}
+    .nav-section{padding:12px 20px 4px;font-size:9px;font-weight:700;color:rgba(250,204,21,.4);letter-spacing:1.5px;text-transform:uppercase}
+    #sidebar-toggle{display:none;position:fixed;top:10px;left:10px;z-index:200;background:var(--gold);color:#111;border:none;border-radius:10px;width:42px;height:42px;font-size:20px;cursor:pointer;font-weight:bold;box-shadow:0 2px 12px rgba(0,0,0,.4);align-items:center;justify-content:center}
+    #main{margin-left:280px}
+    #hero{background:linear-gradient(135deg,#0f0f1e 0%,#1a1a2e 40%,#0f3460 100%);padding:80px 60px 60px;border-bottom:1px solid rgba(250,204,21,.15);position:relative;overflow:hidden}
+    #hero::before{content:'🌟';position:absolute;right:60px;top:30px;font-size:140px;opacity:.06}
+    #hero h1{font-size:3.2rem;font-weight:900;margin-bottom:16px;line-height:1.1;background:linear-gradient(90deg,#facc15,#fde68a,#fb923c);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    #hero p{font-size:1.15rem;color:var(--muted);max-width:640px;margin-bottom:24px}
+    .hero-badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{padding:5px 13px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(250,204,21,.12);color:var(--gold);border:1px solid rgba(250,204,21,.25)}
+    .badge-new{background:rgba(74,222,128,.12);color:var(--green);border-color:rgba(74,222,128,.25)}
+    .content{padding:50px 60px;max-width:940px}
+    .section{margin-bottom:70px;scroll-margin-top:30px}
+    .section-title{font-size:1.8rem;font-weight:800;margin-bottom:8px;color:var(--gold);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(250,204,21,.3),transparent);min-width:20px}
+    .section-subtitle{color:var(--muted);margin-bottom:24px;font-size:.95rem}
+    .code-block{background:#08081a;border:1px solid rgba(250,204,21,.18);border-radius:12px;overflow:hidden;margin:16px 0}
+    .code-header{background:rgba(250,204,21,.07);padding:7px 16px;border-bottom:1px solid rgba(250,204,21,.12);font-size:11.5px;color:var(--gold);font-weight:600}
+    .code-body{padding:16px;font-size:13px;line-height:1.65;overflow-x:auto;font-family:'JetBrains Mono','Courier New',monospace;-webkit-overflow-scrolling:touch}
+    .code-body code{display:block;white-space:pre}
+    .kw{color:#F4B942;font-weight:bold}.sp{color:#ff3c00;font-weight:bold;font-style:italic}
+    .bi{color:#00ff08}.st{color:#f4b52f}.nm{color:#F472B6}
+    .cm{color:#525355;font-style:italic}.op{color:#FCA5A5}
+    .bl{color:#A78BFA;font-weight:bold}.cn{color:#f2fdb5;font-weight:bold}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:18px 0}
+    .card{background:rgba(255,255,255,.025);border:1px solid rgba(250,204,21,.12);border-radius:12px;padding:16px;transition:all .2s}
+    .card:hover{background:rgba(250,204,21,.04);border-color:rgba(250,204,21,.25);transform:translateY(-2px)}
+    .card-icon{font-size:26px;margin-bottom:8px}
+    .card-title{font-weight:700;color:var(--gold);margin-bottom:5px;font-size:13.5px}
+    .card-desc{color:var(--muted);font-size:12.5px;line-height:1.5}
+    .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0}
+    .tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:400px}
+    .tbl th{background:rgba(250,204,21,.08);color:var(--gold);padding:9px 12px;text-align:left;border-bottom:1px solid rgba(250,204,21,.15);font-size:12px}
+    .tbl td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04)}
+    .tbl tr:hover td{background:rgba(255,255,255,.02)}
+    .tbl code{background:rgba(255,255,255,.07);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;color:var(--green);font-size:11.5px}
+    .callout{border-radius:10px;padding:14px 18px;margin:16px 0;display:flex;gap:12px;align-items:flex-start}
+    .callout-tip{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2)}
+    .callout-warn{background:rgba(251,146,60,.06);border:1px solid rgba(251,146,60,.2)}
+    .callout-info{background:rgba(96,165,250,.06);border:1px solid rgba(96,165,250,.2)}
+    .callout-error{background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2)}
+    .callout-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+    .callout-body{flex:1}
+    .callout-body strong{display:block;margin-bottom:3px;font-size:13px}
+    .callout-body p{font-size:12.5px;color:var(--muted);margin:0}
+    ic{background:rgba(255,255,255,.07);padding:2px 6px;border-radius:5px;font-family:'JetBrains Mono',monospace;color:var(--green);font-size:12px}
+    .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+    .compare-box{border-radius:10px;overflow:hidden}
+    .compare-label{padding:6px 14px;font-size:11px;font-weight:700}
+    .compare-label.bad{background:rgba(248,113,113,.15);color:var(--red)}
+    .compare-label.good{background:rgba(74,222,128,.15);color:var(--green)}
+    .compare-code{background:#08081a;padding:12px;font-family:'JetBrains Mono',monospace;font-size:12px;white-space:pre;line-height:1.6;overflow-x:auto}
+    .fn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px;margin:14px 0}
+    .fn-item{background:rgba(0,255,8,.04);border:1px solid rgba(0,255,8,.12);border-radius:8px;padding:9px 12px}
+    .fn-name{color:var(--green);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700}
+    .fn-desc{color:var(--muted);font-size:10.5px;margin-top:2px}
+    .steps{margin:16px 0}
+    .step{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+    .step-num{background:var(--gold);color:#111;min-width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0}
+    .step-content h4{font-size:14px;margin-bottom:3px}
+    .step-content p{font-size:12.5px;color:var(--muted);margin:0}
+    .toc-pills{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 26px}
+    .toc-pill{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(255,255,255,.04);color:var(--muted);border:1px solid rgba(255,255,255,.08);text-decoration:none;transition:all .2s}
+    .toc-pill:hover{background:rgba(250,204,21,.12);color:var(--gold);border-color:rgba(250,204,21,.25)}
+    #back-top{position:fixed;bottom:20px;right:20px;background:var(--gold);color:#111;border:none;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(250,204,21,.3);z-index:50}
+    h2.sub{font-size:1.15rem;color:var(--blue);margin:26px 0 10px;font-weight:700}
+    h3.sub{font-size:.95rem;color:var(--purple);margin:20px 0 8px;font-weight:700}
+    h4.sub{font-size:.9rem;color:var(--teal);margin:16px 0 6px;font-weight:700}
+    p{margin-bottom:12px;font-size:14px}
+    ul,ol{margin:8px 0 12px 20px}
+    li{margin-bottom:5px;font-size:13px;color:var(--muted)}
+    li strong{color:var(--text)}
+    .a{padding:8px 12px;border-radius:6px;background:var(--gold);color:#111;text-decoration:none;transition:all .2s}
+    .a:hover{background:pink;color:#fff}
+    .currency-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;margin:12px 0}
+    .currency-item{background:rgba(96,165,250,.05);border:1px solid rgba(96,165,250,.15);padding:6px 10px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue);text-align:center}
+    .recipe{background:rgba(167,139,250,.04);border:1px solid rgba(167,139,250,.15);border-radius:10px;padding:16px;margin:16px 0}
+    .recipe-title{color:var(--purple);font-weight:700;font-size:14px;margin-bottom:8px}
+    .faq-item{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 18px;margin:10px 0}
+    .faq-q{color:var(--gold);font-weight:700;font-size:13.5px;margin-bottom:6px}
+    .faq-a{color:var(--muted);font-size:13px}
+    .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:16px 0}
+    .stat-card{background:linear-gradient(135deg,rgba(250,204,21,.06),rgba(251,146,60,.06));border:1px solid rgba(250,204,21,.15);border-radius:10px;padding:14px;text-align:center}
+    .stat-num{font-size:1.5rem;font-weight:800;color:var(--gold)}
+    .stat-lbl{font-size:11px;color:var(--muted);margin-top:2px}
+    #sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:140}
+    #sidebar-overlay.show{display:block}
+    @media(max-width:800px){
+      body{overflow-x:hidden}
+      #sidebar{transform:translateX(-100%);transition:transform .3s;width:85%;max-width:320px;z-index:150}
+      #sidebar.open{transform:translateX(0)}
+      #sidebar-toggle{display:flex}
+      #main{margin-left:0}
+      #hero{padding:65px 18px 28px}
+      #hero::before{display:none}
+      #hero h1{font-size:1.65rem}
+      #hero p{font-size:.9rem}
+      .badge{font-size:9.5px;padding:3px 9px}
+      .content{padding:22px 14px}
+      .section{margin-bottom:40px}
+      .section-title{font-size:1.25rem}
+      h2.sub{font-size:1rem}
+      p{font-size:13px}
+      li{font-size:12px}
+      .card-grid{grid-template-columns:1fr}
+      .fn-grid{grid-template-columns:1fr 1fr;gap:6px}
+      .fn-name{font-size:11px}
+      .code-body{font-size:11.5px;padding:14px}
+      .compare{grid-template-columns:1fr}
+      .compare-code{font-size:11px}
+      .callout{padding:12px}
+      ic{font-size:11px}
+      .tbl th,.tbl td{padding:7px 8px;font-size:11px}
+      .tbl code{font-size:10px}
+      .currency-list{grid-template-columns:repeat(4,1fr)}
+      .b{font-size:11px;padding:6px 10px;background-color: rgb(205, 174, 50); color: #111; border-radius: 6px; text-decoration: none; transition: all .2s}
+    }
+    @media(max-width:400px){
+      #hero h1{font-size:1.35rem}
+      .content{padding:18px 10px}
+      .fn-grid{grid-template-columns:1fr}
+      .code-body{font-size:10.5px;padding:10px}
+      .currency-list{grid-template-columns:repeat(3,1fr)}
+    }
+  </style>
+</head>
+<body>
+
+<button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<div id="sidebar">
+  <div id="sidebar-logo">🌟 Littlestar Complete Docs</div>
+  <nav>
+    <div class="nav-section">Start Here</div>
+    <a href="#intro">Introduction</a>
+    <a href="#quickstart">Quick Start</a>
+    <a href="#structure">Program Structure</a>
+    <a href="#playground">Playground Guide</a>
+    <a href="#shortcuts">Keyboard Shortcuts</a>
+    <a href="#comments">Comments</a>
+
+    <div class="nav-section">Variables & Types</div>
+    <a href="#variables">Variables</a>
+    <a href="#datatypes">Data Types</a>
+    <a href="#operators">Operators</a>
+    <a href="#strings">Strings</a>
+    <a href="#arrays">Arrays</a>
+    <a href="#sets">Sets</a>
+    <a href="#objects">Objects</a>
+
+    <div class="nav-section">Control Flow</div>
+    <a href="#conditionals">when/elif/otherwise</a>
+    <a href="#loops">while Loop</a>
+    <a href="#forloop">for Loop</a>
+    <a href="#repeatn">repeat this(N)</a>
+    <a href="#match">match/case</a>
+    <a href="#flowcontrol">stop/skip/return</a>
+    <a href="#compile">compile Error Handling</a>
+    <a href="#assert">assert</a>
+
+    <div class="nav-section">Functions</div>
+    <a href="#functions">Defining Functions</a>
+    <a href="#lion">lion Blocks</a>
+    <a href="#builtins">Output</a>
+    <a href="#input">User Input</a>
+
+    <div class="nav-section">Math</div>
+    <a href="#math">Basic Math (40)</a>
+    <a href="#trig">Trigonometry (21)</a>
+    <a href="#logs">Logarithms (7)</a>
+    <a href="#stats">Statistics (7)</a>
+    <a href="#number-fns">Number Checks (7)</a>
+
+    <div class="nav-section">Strings & Arrays</div>
+    <a href="#string-fns">String Functions (20)</a>
+    <a href="#array-fns">Array Functions (27)</a>
+    <a href="#type-fns">Type Checking (6)</a>
+    <a href="#convert-fns">Conversion (6)</a>
+    <a href="#random-fns">Random (4)</a>
+
+    <div class="nav-section">Equations & Sets</div>
+    <a href="#solve">solve()</a>
+    <a href="#simultaneous">simultaneousLinear()</a>
+    <a href="#mathsets">Set Operations (17)</a>
+    <a href="#set-symbols">Set Symbols</a>
+
+    <div class="nav-section">Real World</div>
+    <a href="#web">Web Output</a>
+    <a href="#modules">Modules & Imports</a>
+    <a href="#databases">Databases</a>
+    <a href="#files">File System</a>
+    <a href="#http">HTTP Requests</a>
+    <a href="#json">JSON</a>
+    <a href="#datetime">Date & Time</a>
+    <a href="#convert">Unit Conversion</a>
+    <a href="#currency">Currency (150+)</a>
+    <a href="#shapes">Geometry (19)</a>
+    <a href="#utility">Utility Functions</a>
+
+    <div class="nav-section">System</div>
+    <a href="#constants">Constants (38)</a>
+    <a href="#modes">Debug/Creator</a>
+    <a href="#errors">All Errors</a>
+
+    <div class="nav-section">Cookbook</div>
+    <a href="#recipes">Common Recipes</a>
+    <a href="#migration">From Python/JS</a>
+    <a href="#style">Style Guide</a>
+    <a href="#faq">FAQ</a>
+
+    <div class="nav-section">Reference</div>
+    <a href="#keywords">All Keywords (39)</a>
+    <a href="#all-fns">All 150+ Functions</a>
+    <a href="#examples-list">All 60+ Examples</a>
+    <a href="#stats-summary">By The Numbers</a>
+    <a href="#tips">Tips & Tricks</a>
+  </nav>
+</div>
+
+<div id="main">
+
+  <div id="hero">
+    <h1>🌟 Littlestar<br>The Complete Guide</h1>
+    <p>The definitive, comprehensive tutorial for Littlestar v2.0. Every keyword. Every function. Every feature. Every example. Written in simple English.</p>
+    <div class="hero-badges">
+      <span class="badge">📚 500+ Features</span>
+      <span class="badge">🧮 150+ Built-in Functions</span>
+      <span class="badge">💱 150+ Currencies</span>
+      <span class="badge">📐 19 Shapes</span>
+      <span class="badge">🔤 39 Keywords</span>
+      <span class="badge">📝 60+ Examples</span>
+      <span class="badge badge-new">🔣 Equation Solver</span>
+      <span class="badge badge-new">🧮 Math Sets</span>
+      <span class="badge badge-new">🔁 For Loops</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="toc-pills">
+      <a class="toc-pill" href="#quickstart">Quick Start</a>
+      <a class="toc-pill" href="#variables">Variables</a>
+      <a class="toc-pill" href="#loops">Loops</a>
+      <a class="toc-pill" href="#functions">Functions</a>
+      <a class="toc-pill" href="#solve">Equations</a>
+      <a class="toc-pill" href="#mathsets">Sets</a>
+      <a class="toc-pill" href="#recipes">Recipes</a>
+      <a class="toc-pill" href="#faq">FAQ</a>
+      <a class="toc-pill" href="#all-fns">All Functions</a>
+      
+    </div>
+
+    <a href="https://paschal6.github.io/littlestar-app/app.html" class="a">Playground</a><br/><br/>
+
+    <!-- ═══════════════════════ INTRO ═══════════════════════ -->
+    <div class="section" id="intro">
+      <div class="section-title">🌟 Introduction</div>
+      <p class="section-subtitle">A programming language for humans.</p>
+      <p><strong>Littlestar</strong> is a scripting language created by <strong>Godspower Kenneth U.</strong> that runs entirely in your web browser. It was designed with one goal: <em>make coding as simple as writing English sentences</em>.</p>
+      <p>Instead of learning cryptic symbols and complex syntax, you use plain words. Instead of installing programs and configuring environments, you just open a webpage. That's it.</p>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-num">500+</div><div class="stat-lbl">Features</div></div>
+        <div class="stat-card"><div class="stat-num">150+</div><div class="stat-lbl">Functions</div></div>
+        <div class="stat-card"><div class="stat-num">39</div><div class="stat-lbl">Keywords</div></div>
+        <div class="stat-card"><div class="stat-num">150+</div><div class="stat-lbl">Currencies</div></div>
+        <div class="stat-card"><div class="stat-num">19</div><div class="stat-lbl">Shapes</div></div>
+        <div class="stat-card"><div class="stat-num">60+</div><div class="stat-lbl">Examples</div></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ QUICKSTART ═══════════════════════ -->
+    <div class="section" id="quickstart">
+      <div class="section-title">🚀 Quick Start (5 Minutes)</div>
+      <p class="section-subtitle">Your first Littlestar program in 5 minutes.</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Open the Playground</h4><p>Open the Littlestar Playground HTML file in your browser. No installation needed. <a class="a" href="https://paschal6.github.io/littlestar-app/app.html" target="_blank">Open Playground</a></p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Type your first program</h4><p>Copy the code below into the editor.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Click Run (or press Ctrl+Enter)</h4><p>Watch your output appear!</p></div></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 hello.lstar — Your First Program</div>
+        <div class="code-body"><code><span class="kw">module</span> littlestar:
+
+    <span class="sp">spark</span> <span class="bi">main</span>(<span class="nm">1</span>):
+        <span class="bi">display</span>(<span class="st">"Hello, world! 🌟"</span>)
+        <span class="bi">display</span>(<span class="st">"I am learning Littlestar!"</span>)
+
+    <span class="sp">spark</span> <span class="bi">print</span>:
+        <span class="bi">main</span>(<span class="nm">1</span>)</code></div>
+      </div>
+      <p><strong>Output:</strong></p>
+      <div class="code-block"><div class="code-body"><code>Hello, world! 🌟
+I am learning Littlestar!</code></div></div>
+    </div>
+
+    <!-- ═══════════════════════ STRUCTURE ═══════════════════════ -->
+    <div class="section" id="structure">
+      <div class="section-title">🏗️ Program Structure</div>
+      <p class="section-subtitle">The 3 mandatory parts of every Littlestar program.</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Module Declaration</h4><p><ic>module littlestar:</ic> — must be the first line of code. It tells the interpreter this is a Littlestar file.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Main Blocks</h4><p><ic>spark main(1):</ic> is where your code lives. You can have main(1), main(2), main(3)… They must be numbered starting from 1 with no gaps.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Print Block</h4><p><ic>spark print:</ic> tells the computer which main blocks to run and in what order.</p></div></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Multi-Section Program</div>
+        <div class="code-body"><code><span class="kw">module</span> littlestar:
+
+    <span class="sp">spark</span> <span class="bi">main</span>(<span class="nm">1</span>):
+        <span class="bi">display</span>(<span class="st">"Section 1: Introduction"</span>)
+
+    <span class="sp">spark</span> <span class="bi">main</span>(<span class="nm">2</span>):
+        <span class="bi">display</span>(<span class="st">"Section 2: Main Content"</span>)
+
+    <span class="sp">spark</span> <span class="bi">main</span>(<span class="nm">3</span>):
+        <span class="bi">display</span>(<span class="st">"Section 3: Summary"</span>)
+
+    <span class="sp">spark</span> <span class="bi">print</span>:
+        <span class="bi">main</span>(<span class="nm">1</span>)
+        <span class="bi">main</span>(<span class="nm">2</span>)
+        <span class="bi">main</span>(<span class="nm">3</span>)</code></div>
+      </div>
+      <div class="callout callout-warn">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <strong>4-Space Indentation is Required</strong>
+          <p>Everything inside a block MUST use 4 spaces. Press Tab in the Playground to insert 4 spaces automatically.</p>
+        </div>
+      </div>
+      <div class="callout callout-info">
+        <div class="callout-icon">🔀</div>
+        <div class="callout-body">
+          <strong>You can run mains in any order</strong>
+          <p><ic>spark print:</ic> controls order. You can even run main(2) before main(1), or skip mains entirely.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ PLAYGROUND ═══════════════════════ -->
+    <div class="section" id="playground">
+      <div class="section-title">🛝 Playground Guide</div>
+      <p class="section-subtitle">Complete walkthrough of the Playground interface.</p>
+      <h2 class="sub">Top Bar Buttons</h2>
+      <div class="card-grid">
+        <div class="card"><div class="card-icon">📁</div><div class="card-title">Load Example</div><div class="card-desc">Dropdown with 60+ ready-made programs organized by category.</div></div>
+        <div class="card"><div class="card-icon">📂</div><div class="card-title">Open</div><div class="card-desc">Upload .lstar or .txt files from your device.</div></div>
+        <div class="card"><div class="card-icon">▶️</div><div class="card-title">Run</div><div class="card-desc">Executes the current active tab.</div></div>
+        <div class="card"><div class="card-icon">⚡</div><div class="card-title">Run All</div><div class="card-desc">Executes every open tab in order.</div></div>
+        <div class="card"><div class="card-icon">🗑️</div><div class="card-title">Clear</div><div class="card-desc">Clears the output panel.</div></div>
+        <div class="card"><div class="card-icon">📥</div><div class="card-title">Save</div><div class="card-desc">Downloads the current file to your device.</div></div>
+      </div>
+      <h2 class="sub">Tab Bar</h2>
+      <ul>
+        <li><strong>Click a tab</strong> — switch to that file</li>
+        <li><strong>Click × on a tab</strong> — close that file</li>
+        <li><strong>Double-click a tab</strong> — rename the file</li>
+        <li><strong>Long-press on mobile</strong> — rename the file</li>
+        <li><strong>Click +</strong> — create a new empty file</li>
+      </ul>
+      <h2 class="sub">Editor Panel</h2>
+      <ul>
+        <li><strong>Syntax highlighting</strong> — colors update in real time as you type</li>
+        <li><strong>Character counter</strong> — shows total characters at top-right</li>
+        <li><strong>Auto-save</strong> — every change saves to browser storage automatically</li>
+        <li><strong>Legend</strong> — bottom shows what each color means</li>
+      </ul>
+      <h2 class="sub">Output Panel</h2>
+      <ul>
+        <li><strong>Console tab</strong> — text output from display/shine/glow, errors, debug info</li>
+        <li><strong>Web tab</strong> — rendered HTML from <ic>web:</ic> blocks</li>
+      </ul>
+    </div>
+
+    <!-- ═══════════════════════ SHORTCUTS ═══════════════════════ -->
+    <div class="section" id="shortcuts">
+      <div class="section-title">⌨️ Keyboard Shortcuts</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Shortcut</th><th>What It Does</th></tr>
+        <tr><td><code>Ctrl+Enter</code> (Windows/Linux)</td><td>Run current file</td></tr>
+        <tr><td><code>Cmd+Enter</code> (Mac)</td><td>Run current file</td></tr>
+        <tr><td><code>Tab</code></td><td>Insert 4 spaces (indent)</td></tr>
+        <tr><td><code>Ctrl+A</code> / <code>Cmd+A</code></td><td>Select all code</td></tr>
+        <tr><td><code>Ctrl+Z</code> / <code>Cmd+Z</code></td><td>Undo</td></tr>
+        <tr><td><code>Ctrl+Y</code> / <code>Cmd+Shift+Z</code></td><td>Redo</td></tr>
+      </table></div>
+    </div>
+
+    <!-- ═══════════════════════ COMMENTS ═══════════════════════ -->
+    <div class="section" id="comments">
+      <div class="section-title">💬 Comments</div>
+      <p class="section-subtitle">Notes for yourself — the computer ignores them.</p>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Type</th><th>Syntax</th><th>Scope</th></tr>
+        <tr><td>Inline (single line)</td><td><code># comment text</code></td><td>Rest of the line only</td></tr>
+        <tr><td>Block (multi-line)</td><td><code>!! comment text !!</code></td><td>Everything between !! and !!</td></tr>
+      </table></div>
+      <div class="code-block">
+        <div class="code-header">📄 Comment Examples</div>
+        <div class="code-body"><code><span class="cm"># This whole line is a comment</span>
+
+<span class="bi">display</span>(<span class="st">"Hello"</span>)  <span class="cm"># comment at end of line</span>
+
+<span class="cm">!! This is a block comment.
+   It can span many lines.
+   Great for explaining big sections. !!</span>
+
+<span class="bi">display</span>(<span class="st">"# This is NOT a comment - it's inside a string"</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ VARIABLES ═══════════════════════ -->
+    <div class="section" id="variables">
+      <div class="section-title">📦 Variables — Complete Guide</div>
+      <p class="section-subtitle">Every variable command explained with examples.</p>
+
+      <h2 class="sub">All 9 Variable Commands</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Command</th><th>Purpose</th><th>Can Change Later?</th></tr>
+        <tr><td><code>declare x = value</code></td><td>Create new variable</td><td>Yes — with <code>set</code></td></tr>
+        <tr><td><code>make x = value</code></td><td>Same as declare (alias)</td><td>Yes — with <code>set</code></td></tr>
+        <tr><td><code>set x = newValue</code></td><td>Update existing variable</td><td>—</td></tr>
+        <tr><td><code>fix x = value</code></td><td>Create constant (immutable)</td><td>Never</td></tr>
+        <tr><td><code>del x</code></td><td>Delete variable</td><td>—</td></tr>
+        <tr><td><code>swap a, b</code></td><td>Swap two variables</td><td>—</td></tr>
+        <tr><td><code>letarr x = 1,2,3</code></td><td>Create array</td><td>—</td></tr>
+        <tr><td><code>letset x = 1,2,3</code></td><td>Create set (unique)</td><td>—</td></tr>
+        <tr><td><code>letobj x: ...</code></td><td>Create object</td><td>—</td></tr>
+      </table></div>
+
+      <h2 class="sub">Basic Usage</h2>
+      <div class="code-block">
+        <div class="code-header">📄 declare and set</div>
+        <div class="code-body"><code><span class="kw">declare</span> name = <span class="st">"Alice"</span>
+<span class="kw">declare</span> age = <span class="nm">25</span>
+<span class="kw">declare</span> happy = <span class="bl">yes</span>
+
+<span class="bi">display</span>(name)   <span class="cm"># Alice</span>
+<span class="bi">display</span>(age)    <span class="cm"># 25</span>
+
+<span class="kw">set</span> age = <span class="nm">26</span>  <span class="cm"># Update</span>
+<span class="bi">display</span>(age)    <span class="cm"># 26</span></code></div>
+      </div>
+
+      <h2 class="sub">Constants with fix</h2>
+      <div class="code-block">
+        <div class="code-header">📄 fix — Immutable Values</div>
+        <div class="code-body"><code><span class="kw">fix</span> PI = <span class="nm">3.14159</span>
+<span class="kw">fix</span> MAX_USERS = <span class="nm">1000</span>
+<span class="kw">fix</span> APP_NAME = <span class="st">"MyApp"</span>
+
+<span class="bi">display</span>(PI)  <span class="cm"># 3.14159</span>
+
+<span class="cm"># set PI = 4  # ❌ ERROR: PI is FIXED!</span></code></div>
+      </div>
+
+      <h2 class="sub">The Swap Trick</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Swap two variables in one line</div>
+        <div class="code-body"><code><span class="kw">declare</span> a = <span class="nm">10</span>
+<span class="kw">declare</span> b = <span class="nm">20</span>
+
+<span class="bi">swap</span> a, b
+
+<span class="bi">display</span>(a)  <span class="cm"># 20</span>
+<span class="bi">display</span>(b)  <span class="cm"># 10</span></code></div>
+      </div>
+
+      <h2 class="sub">Deleting Variables</h2>
+      <div class="code-block">
+        <div class="code-header">📄 del</div>
+        <div class="code-body"><code><span class="kw">declare</span> temp = <span class="st">"unused"</span>
+<span class="bi">display</span>(temp)  <span class="cm"># unused</span>
+
+<span class="kw">del</span> temp
+<span class="cm"># display(temp)  # ❌ ERROR: not defined</span></code></div>
+      </div>
+
+      <div class="callout callout-error">
+        <div class="callout-icon">🚫</div>
+        <div class="callout-body">
+          <strong>Rule: No redeclaration!</strong>
+          <p>Once you use <ic>declare</ic> for a variable, you must use <ic>set</ic> to change it. This protects you from accidentally overwriting things.</p>
+        </div>
+      </div>
+      <div class="compare">
+        <div class="compare-box">
+          <div class="compare-label bad">❌ Wrong</div>
+          <div class="compare-code"><span class="kw">declare</span> x = <span class="nm">5</span>
+<span class="kw">declare</span> x = <span class="nm">10</span>  <span class="cm"># ERROR!</span></div>
+        </div>
+        <div class="compare-box">
+          <div class="compare-label good">✅ Right</div>
+          <div class="compare-code"><span class="kw">declare</span> x = <span class="nm">5</span>
+<span class="kw">set</span> x = <span class="nm">10</span>      <span class="cm"># Works!</span></div>
+        </div>
+      </div>
+
+      <h2 class="sub">Variable Naming Rules</h2>
+      <ul>
+        <li>✅ Can contain: letters (a-z, A-Z), numbers (0-9), underscore (_)</li>
+        <li>✅ Must start with a letter or underscore</li>
+        <li>❌ Cannot start with a number</li>
+        <li>❌ Cannot contain: spaces, dashes, symbols like @, #, $, !</li>
+        <li>💡 Case-sensitive: <ic>name</ic> and <ic>Name</ic> are different variables</li>
+      </ul>
+      <div class="compare">
+        <div class="compare-box">
+          <div class="compare-label good">✅ Valid Names</div>
+          <div class="compare-code">myName
+score_1
+totalPrice
+_private
+user2
+firstName</div>
+        </div>
+        <div class="compare-box">
+          <div class="compare-label bad">❌ Invalid Names</div>
+          <div class="compare-code">2fast       (starts with number)
+my-name     (has dash)
+@email      (has @)
+first name  (has space)
+my.var      (has dot)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ DATA TYPES ═══════════════════════ -->
+    <div class="section" id="datatypes">
+      <div class="section-title">🔢 Data Types</div>
+      <p class="section-subtitle">All the kinds of values Littlestar understands.</p>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Type</th><th>Examples</th><th>Notes</th></tr>
+        <tr><td><strong>Number</strong></td><td><code>42</code>, <code>3.14</code>, <code>-7</code>, <code>0</code>, <code>1.5e6</code></td><td>Whole or decimal</td></tr>
+        <tr><td><strong>String</strong></td><td><code>"Hello"</code>, <code>'World'</code></td><td>Single or double quotes</td></tr>
+        <tr><td><strong>Boolean</strong></td><td><code>yes</code>, <code>no</code></td><td>true/false equivalent</td></tr>
+        <tr><td><strong>Array</strong></td><td><code>letarr x = 1, 2, 3</code></td><td>Ordered, duplicates OK</td></tr>
+        <tr><td><strong>Set</strong></td><td><code>letset x = 1, 2, 3</code></td><td>Unique values only</td></tr>
+        <tr><td><strong>Object</strong></td><td><code>letobj x: name: "Alice"</code></td><td>Key-value pairs</td></tr>
+      </table></div>
+    </div>
+
+    <!-- ═══════════════════════ OPERATORS ═══════════════════════ -->
+    <div class="section" id="operators">
+      <div class="section-title">⚙️ Operators — Complete Reference</div>
+
+      <h2 class="sub">Math Operators (6)</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Op</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+        <tr><td><code>+</code></td><td>Add / Concatenate</td><td><code>5 + 3</code></td><td><code>8</code></td></tr>
+        <tr><td><code>+</code></td><td>Join strings</td><td><code>"Hi " + "there"</code></td><td><code>"Hi there"</code></td></tr>
+        <tr><td><code>-</code></td><td>Subtract</td><td><code>10 - 4</code></td><td><code>6</code></td></tr>
+        <tr><td><code>*</code></td><td>Multiply</td><td><code>3 * 4</code></td><td><code>12</code></td></tr>
+        <tr><td><code>/</code></td><td>Divide</td><td><code>10 / 3</code></td><td><code>3.333...</code></td></tr>
+        <tr><td><code>**</code></td><td>Power</td><td><code>2 ** 8</code></td><td><code>256</code></td></tr>
+        <tr><td><code>mod</code></td><td>Remainder</td><td><code>10 mod 3</code></td><td><code>1</code></td></tr>
+      </table></div>
+
+      <h2 class="sub">Comparison Operators (6)</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Op</th><th>Meaning</th></tr>
+        <tr><td><code>==</code></td><td>Equal to</td></tr>
+        <tr><td><code>!=</code> or <code>&lt;&gt;</code></td><td>Not equal to</td></tr>
+        <tr><td><code>&lt;</code></td><td>Less than</td></tr>
+        <tr><td><code>&gt;</code></td><td>Greater than</td></tr>
+        <tr><td><code>&lt;=</code></td><td>Less than or equal</td></tr>
+        <tr><td><code>&gt;=</code></td><td>Greater than or equal</td></tr>
+      </table></div>
+
+      <h2 class="sub">Logic Operators (4)</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Word</th><th>Meaning</th><th>Example</th></tr>
+        <tr><td><code>and</code></td><td>Both true</td><td><code>age &gt;= 18 and age &lt; 65</code></td></tr>
+        <tr><td><code>or</code></td><td>At least one true</td><td><code>x == 1 or x == 2</code></td></tr>
+        <tr><td><code>not</code></td><td>Flip true/false</td><td><code>not (x == 5)</code></td></tr>
+        <tr><td><code>contains</code></td><td>Is inside?</td><td><code>nums contains 7</code></td></tr>
+      </table></div>
+
+      <h2 class="sub">Operator Precedence (order of operations)</h2>
+      <ol>
+        <li>Parentheses <ic>()</ic> — always first</li>
+        <li>Power <ic>**</ic></li>
+        <li>Multiply/divide/mod: <ic>*</ic> <ic>/</ic> <ic>mod</ic></li>
+        <li>Add/subtract: <ic>+</ic> <ic>-</ic></li>
+        <li>Comparisons: <ic>&lt;</ic> <ic>&gt;</ic> <ic>==</ic> etc.</li>
+        <li><ic>not</ic></li>
+        <li><ic>and</ic></li>
+        <li><ic>or</ic></li>
+      </ol>
+      <div class="code-block">
+        <div class="code-header">📄 Precedence Example</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="nm">2</span> + <span class="nm">3</span> * <span class="nm">4</span>)          <span class="cm"># 14 (not 20)</span>
+<span class="bi">display</span>((<span class="nm">2</span> + <span class="nm">3</span>) * <span class="nm">4</span>)        <span class="cm"># 20</span>
+<span class="bi">display</span>(<span class="nm">2</span> ** <span class="nm">3</span> * <span class="nm">4</span>)         <span class="cm"># 32 (power first)</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ STRINGS ═══════════════════════ -->
+    <div class="section" id="strings">
+      <div class="section-title">📝 Strings — Complete Guide</div>
+
+      <h2 class="sub">Creating Strings</h2>
+      <div class="code-block">
+        <div class="code-header">📄 String Basics</div>
+        <div class="code-body"><code><span class="kw">declare</span> a = <span class="st">"Hello"</span>          <span class="cm"># double quotes</span>
+<span class="kw">declare</span> b = <span class="st">'World'</span>          <span class="cm"># single quotes</span>
+<span class="kw">declare</span> c = <span class="st">""</span>               <span class="cm"># empty string</span></code></div>
+      </div>
+
+      <h2 class="sub">Concatenation (Joining Strings)</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Using +</div>
+        <div class="code-body"><code><span class="kw">declare</span> first = <span class="st">"Hello"</span>
+<span class="kw">declare</span> last = <span class="st">"World"</span>
+<span class="bi">display</span>(first + <span class="st">" "</span> + last)  <span class="cm"># Hello World</span></code></div>
+      </div>
+
+      <h2 class="sub">String Interpolation with {}</h2>
+      <p>The easy way — put variables directly inside strings using curly braces:</p>
+      <div class="code-block">
+        <div class="code-header">📄 Interpolation</div>
+        <div class="code-body"><code><span class="kw">declare</span> name = <span class="st">"Alice"</span>
+<span class="kw">declare</span> age = <span class="nm">25</span>
+
+<span class="bi">display</span>(<span class="st">"Hello, {name}!"</span>)
+<span class="cm"># Hello, Alice!</span>
+
+<span class="bi">display</span>(<span class="st">"You are {age} years old."</span>)
+<span class="cm"># You are 25 years old.</span>
+
+<span class="cm"># You can even do math inside {}</span>
+<span class="bi">display</span>(<span class="st">"Next year you will be {age + 1}."</span>)
+<span class="cm"># Next year you will be 26.</span>
+
+<span class="cm"># And call functions</span>
+<span class="bi">display</span>(<span class="st">"Uppercase: {upper(name)}"</span>)
+<span class="cm"># Uppercase: ALICE</span></code></div>
+      </div>
+
+      <h2 class="sub">Line Breaks</h2>
+      <div class="code-block">
+        <div class="code-header">📄 lbr and \n</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="st">"Line 1"</span>)
+<span class="bi">lbr</span>                            <span class="cm"># prints blank line</span>
+<span class="bi">display</span>(<span class="st">"Line 3"</span>)
+
+<span class="bi">display</span>(<span class="st">"First\nSecond"</span>)      <span class="cm"># \n = new line</span></code></div>
+      </div>
+
+      <h2 class="sub">Special Characters</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Sequence</th><th>Result</th></tr>
+        <tr><td><code>\n</code></td><td>New line</td></tr>
+        <tr><td><code>\t</code></td><td>Tab</td></tr>
+        <tr><td><code>\"</code></td><td>Double quote</td></tr>
+        <tr><td><code>\'</code></td><td>Single quote</td></tr>
+        <tr><td><code>\\</code></td><td>Backslash</td></tr>
+      </table></div>
+    </div>
+
+    <!-- ═══════════════════════ ARRAYS ═══════════════════════ -->
+    <div class="section" id="arrays">
+      <div class="section-title">📊 Arrays — Complete Guide</div>
+      <p class="section-subtitle">Ordered lists that can hold any type of value.</p>
+
+      <h2 class="sub">Creating Arrays</h2>
+      <div class="code-block">
+        <div class="code-header">📄 letarr</div>
+        <div class="code-body"><code><span class="kw">letarr</span> nums = <span class="nm">10</span>, <span class="nm">20</span>, <span class="nm">30</span>, <span class="nm">40</span>
+<span class="kw">letarr</span> names = <span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Carol"</span>
+<span class="kw">letarr</span> mixed = <span class="nm">1</span>, <span class="st">"hello"</span>, <span class="bl">yes</span>, <span class="nm">3.14</span>
+<span class="kw">letarr</span> empty = <span class="cm"># empty array</span></code></div>
+      </div>
+
+      <h2 class="sub">Accessing Elements</h2>
+      <p>Index starts at <strong>0</strong>. So the first item is <ic>arr[0]</ic>, the second is <ic>arr[1]</ic>, and so on.</p>
+      <div class="code-block">
+        <div class="code-header">📄 Array Access</div>
+        <div class="code-body"><code><span class="kw">letarr</span> colors = <span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>
+
+<span class="bi">display</span>(colors[<span class="nm">0</span>])       <span class="cm"># red</span>
+<span class="bi">display</span>(colors[<span class="nm">1</span>])       <span class="cm"># green</span>
+<span class="bi">display</span>(colors[<span class="nm">2</span>])       <span class="cm"># blue</span>
+<span class="bi">display</span>(<span class="bi">len</span>(colors))     <span class="cm"># 3</span>
+
+<span class="cm"># Get last element</span>
+<span class="bi">display</span>(colors[<span class="bi">len</span>(colors) - <span class="nm">1</span>])  <span class="cm"># blue</span>
+<span class="bi">display</span>(<span class="bi">last</span>(colors))    <span class="cm"># blue (easier!)</span></code></div>
+      </div>
+
+      <h2 class="sub">Looping Through Arrays</h2>
+      <div class="code-block">
+        <div class="code-header">📄 With for loop</div>
+        <div class="code-body"><code><span class="kw">letarr</span> fruits = <span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>
+
+<span class="kw">as</span> i <span class="kw">in</span> <span class="nm">0</span> <span class="kw">till</span> <span class="bi">len</span>(fruits) - <span class="nm">1</span>:
+    <span class="bi">display</span>(<span class="st">"{i}: {fruits[i]}"</span>)
+
+<span class="cm"># Output:
+# 0: apple
+# 1: banana
+# 2: cherry</span></code></div>
+      </div>
+
+      <h2 class="sub">All 27 Array Functions</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Function</th><th>What It Does</th><th>Example</th></tr>
+        <tr><td><code>add(arr, x)</code></td><td>Add to end</td><td><code>add(nums, 40)</code></td></tr>
+        <tr><td><code>addFirst(arr, x)</code></td><td>Add to start</td><td><code>addFirst(nums, 0)</code></td></tr>
+        <tr><td><code>insertAt(arr, i, x)</code></td><td>Insert at index i</td><td><code>insertAt(nums, 2, 99)</code></td></tr>
+        <tr><td><code>remove(arr)</code></td><td>Remove last item</td><td><code>remove(nums)</code></td></tr>
+        <tr><td><code>removeFirst(arr)</code></td><td>Remove first item</td><td><code>removeFirst(nums)</code></td></tr>
+        <tr><td><code>removeAt(arr, i)</code></td><td>Remove item at index</td><td><code>removeAt(nums, 2)</code></td></tr>
+        <tr><td><code>removeItem(arr, x)</code></td><td>Remove first match of x</td><td><code>removeItem(nums, 30)</code></td></tr>
+        <tr><td><code>pop(arr)</code></td><td>Clear entire array</td><td><code>pop(nums)</code></td></tr>
+        <tr><td><code>clear(arr)</code></td><td>Alias for pop</td><td><code>clear(nums)</code></td></tr>
+        <tr><td><code>sort(arr)</code></td><td>Sort ascending</td><td><code>sort(nums)</code></td></tr>
+        <tr><td><code>dsort(arr)</code></td><td>Sort descending</td><td><code>dsort(nums)</code></td></tr>
+        <tr><td><code>reverse(arr)</code></td><td>Reverse order</td><td><code>reverse(nums)</code></td></tr>
+        <tr><td><code>unique(arr)</code></td><td>Remove duplicates</td><td><code>unique(nums)</code></td></tr>
+        <tr><td><code>first(arr)</code></td><td>First item</td><td><code>first(nums)</code></td></tr>
+        <tr><td><code>last(arr)</code></td><td>Last item</td><td><code>last(nums)</code></td></tr>
+        <tr><td><code>len(arr)</code></td><td>Length</td><td><code>len(nums)</code></td></tr>
+        <tr><td><code>count(arr, x)</code></td><td>Count how many x</td><td><code>count(nums, 5)</code></td></tr>
+        <tr><td><code>contains(arr, x)</code></td><td>Is x in array?</td><td><code>contains(nums, 5)</code></td></tr>
+        <tr><td><code>indexOf(arr, x)</code></td><td>Position of x</td><td><code>indexOf(nums, 5)</code></td></tr>
+        <tr><td><code>slice(arr, a, b)</code></td><td>Sub-array a to b</td><td><code>slice(nums, 1, 3)</code></td></tr>
+        <tr><td><code>concat(a, b)</code></td><td>Merge two arrays</td><td><code>concat(a, b)</code></td></tr>
+        <tr><td><code>join(arr, sep)</code></td><td>Join to string</td><td><code>join(names, ", ")</code></td></tr>
+        <tr><td><code>flatten(arr)</code></td><td>Flatten nested</td><td><code>flatten([[1,2],[3,4]])</code></td></tr>
+        <tr><td><code>chunk(arr, n)</code></td><td>Split into groups</td><td><code>chunk(nums, 2)</code></td></tr>
+        <tr><td><code>zip(a, b)</code></td><td>Pair two arrays</td><td><code>zip(names, ages)</code></td></tr>
+        <tr><td><code>map(arr, fn)</code></td><td>Transform each</td><td><code>map(nums, double)</code></td></tr>
+        <tr><td><code>filter(arr, fn)</code></td><td>Keep matching</td><td><code>filter(nums, isEven)</code></td></tr>
+      </table></div>
+
+      <h2 class="sub">Advanced Array Examples</h2>
+      <div class="code-block">
+        <div class="code-header">📄 chunk() and zip()</div>
+        <div class="code-body"><code><span class="kw">letarr</span> nums = <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>, <span class="nm">6</span>
+<span class="bi">display</span>(<span class="bi">chunk</span>(nums, <span class="nm">2</span>))
+<span class="cm"># [[1,2], [3,4], [5,6]]</span>
+
+<span class="kw">letarr</span> names = <span class="st">"Alice"</span>, <span class="st">"Bob"</span>
+<span class="kw">letarr</span> ages = <span class="nm">30</span>, <span class="nm">25</span>
+<span class="bi">display</span>(<span class="bi">zip</span>(names, ages))
+<span class="cm"># [["Alice", 30], ["Bob", 25]]</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ SETS ═══════════════════════ -->
+    <div class="section" id="sets">
+      <div class="section-title">🧮 Sets — Complete Guide</div>
+      <p class="section-subtitle">Like arrays but no duplicates. Perfect for math problems.</p>
+      <div class="code-block">
+        <div class="code-header">📄 Basic Set Usage</div>
+        <div class="code-body"><code><span class="kw">letset</span> A = <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>
+<span class="kw">letset</span> B = <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">3</span>, <span class="nm">3</span>
+
+<span class="bi">display</span>(A)   <span class="cm"># 1, 2, 3, 4, 5</span>
+<span class="bi">display</span>(B)   <span class="cm"># 1, 2, 3 (duplicates removed!)</span></code></div>
+      </div>
+      <div class="callout callout-tip">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <strong>letarr vs letset — which to use?</strong>
+          <p>Use <ic>letset</ic> when you need unique values (math sets, unique IDs, tags). Use <ic>letarr</ic> when duplicates matter (scores, prices, sequences).</p>
+        </div>
+      </div>
+      <p>See the <a href="#mathsets" style="color:var(--gold)">Set Operations</a> section for all 17 things you can do with sets.</p>
+    </div>
+
+    <!-- ═══════════════════════ OBJECTS ═══════════════════════ -->
+    <div class="section" id="objects">
+      <div class="section-title">📦 Objects — Complete Guide</div>
+      <p class="section-subtitle">Group related information under one name.</p>
+      <div class="code-block">
+        <div class="code-header">📄 Creating Objects</div>
+        <div class="code-body"><code><span class="kw">letobj</span> person:
+    name: <span class="st">"Alice"</span>
+    age: <span class="nm">25</span>
+    city: <span class="st">"London"</span>
+    active: <span class="bl">yes</span>
+
+<span class="bi">display</span>(person)              <span class="cm"># Show all</span>
+<span class="bi">display</span>(person[<span class="st">"name"</span>])     <span class="cm"># Alice</span>
+<span class="bi">display</span>(person[<span class="st">"age"</span>])      <span class="cm"># 25</span></code></div>
+      </div>
+      <div class="callout callout-info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <strong>Use bracket notation only</strong>
+          <p>Access object properties with <ic>person["name"]</ic> — not <ic>person.name</ic>. Dot notation doesn't work in Littlestar.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ CONDITIONALS ═══════════════════════ -->
+    <div class="section" id="conditionals">
+      <div class="section-title">🔀 when / elif / otherwise</div>
+      <p class="section-subtitle">Making your program decide what to do.</p>
+
+      <h2 class="sub">Basic when</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Simple if</div>
+        <div class="code-body"><code><span class="kw">declare</span> age = <span class="nm">18</span>
+
+<span class="kw">when</span> age >= <span class="nm">18</span>:
+    <span class="bi">display</span>(<span class="st">"You can vote!"</span>)</code></div>
+      </div>
+
+      <h2 class="sub">when + otherwise</h2>
+      <div class="code-block">
+        <div class="code-header">📄 If/else</div>
+        <div class="code-body"><code><span class="kw">declare</span> age = <span class="nm">15</span>
+
+<span class="kw">when</span> age >= <span class="nm">18</span>:
+    <span class="bi">display</span>(<span class="st">"Adult"</span>)
+<span class="kw">otherwise</span>:
+    <span class="bi">display</span>(<span class="st">"Minor"</span>)</code></div>
+      </div>
+
+      <h2 class="sub">Multiple Conditions with elif</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Grade Calculator</div>
+        <div class="code-body"><code><span class="kw">declare</span> score = <span class="nm">85</span>
+
+<span class="kw">when</span> score >= <span class="nm">90</span>:
+    <span class="bi">display</span>(<span class="st">"A"</span>)
+<span class="kw">elif</span> score >= <span class="nm">80</span>:
+    <span class="bi">display</span>(<span class="st">"B"</span>)
+<span class="kw">elif</span> score >= <span class="nm">70</span>:
+    <span class="bi">display</span>(<span class="st">"C"</span>)
+<span class="kw">elif</span> score >= <span class="nm">60</span>:
+    <span class="bi">display</span>(<span class="st">"D"</span>)
+<span class="kw">otherwise</span>:
+    <span class="bi">display</span>(<span class="st">"F"</span>)</code></div>
+      </div>
+
+      <h2 class="sub">Combining Conditions</h2>
+      <div class="code-block">
+        <div class="code-header">📄 and / or / not</div>
+        <div class="code-body"><code><span class="kw">declare</span> age = <span class="nm">25</span>
+<span class="kw">declare</span> licensed = <span class="bl">yes</span>
+
+<span class="kw">when</span> age >= <span class="nm">18</span> <span class="kw">and</span> licensed:
+    <span class="bi">display</span>(<span class="st">"Can drive"</span>)
+
+<span class="kw">when</span> age &lt; <span class="nm">13</span> <span class="kw">or</span> age > <span class="nm">65</span>:
+    <span class="bi">display</span>(<span class="st">"Discount!"</span>)
+
+<span class="kw">when</span> <span class="kw">not</span> licensed:
+    <span class="bi">display</span>(<span class="st">"Get a license first"</span>)</code></div>
+      </div>
+
+      <h2 class="sub">The contains Keyword</h2>
+      <div class="code-block">
+        <div class="code-header">📄 contains — check membership</div>
+        <div class="code-body"><code><span class="kw">letarr</span> fruits = <span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>
+<span class="kw">when</span> fruits <span class="kw">contains</span> <span class="st">"banana"</span>:
+    <span class="bi">display</span>(<span class="st">"🍌 Yes!"</span>)
+
+<span class="kw">declare</span> msg = <span class="st">"I love coding"</span>
+<span class="kw">when</span> msg <span class="kw">contains</span> <span class="st">"love"</span>:
+    <span class="bi">display</span>(<span class="st">"❤️"</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ WHILE ═══════════════════════ -->
+    <div class="section" id="loops">
+      <div class="section-title">🔁 while Loop</div>
+      <p class="section-subtitle">Keep doing something while a condition stays true.</p>
+      <div class="code-block">
+        <div class="code-header">📄 Basic while</div>
+        <div class="code-body"><code><span class="kw">declare</span> i = <span class="nm">1</span>
+<span class="kw">while</span> i <= <span class="nm">5</span>:
+    <span class="bi">display</span>(<span class="st">"Count: {i}"</span>)
+    <span class="kw">set</span> i = i + <span class="nm">1</span>
+
+<span class="cm"># Output: Count: 1, 2, 3, 4, 5</span></code></div>
+      </div>
+      <div class="callout callout-warn">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <strong>Always update the loop variable!</strong>
+          <p>Forgetting <ic>set i = i + 1</ic> makes an infinite loop. Littlestar stops it at 10,000 rounds to protect you.</p>
+        </div>
+      </div>
+      <h2 class="sub">Real Example: Number Guessing</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Loop until correct</div>
+        <div class="code-body"><code><span class="kw">declare</span> secret = <span class="bi">randInt</span>(<span class="nm">1</span>, <span class="nm">10</span>)
+<span class="kw">declare</span> guess = <span class="nm">0</span>
+<span class="kw">declare</span> tries = <span class="nm">0</span>
+
+<span class="kw">while</span> guess != secret:
+    <span class="kw">set</span> guess = <span class="bi">readNum</span>(<span class="st">"Guess 1-10:"</span>)
+    <span class="kw">set</span> tries = tries + <span class="nm">1</span>
+
+<span class="bi">display</span>(<span class="st">"Got it in {tries} tries!"</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ FOR LOOP ═══════════════════════ -->
+    <div class="section" id="forloop">
+      <div class="section-title">🔄 for Loop (as / in / till) <span class="badge badge-new" style="font-size:10px;margin-left:8px">NEW</span></div>
+      <p class="section-subtitle">The easiest loop — no counter variable needed!</p>
+      <h2 class="sub">Count Up</h2>
+      <div class="code-block">
+        <div class="code-header">📄 1 to 10</div>
+        <div class="code-body"><code><span class="kw">as</span> i <span class="kw">in</span> <span class="nm">1</span> <span class="kw">till</span> <span class="nm">10</span>:
+    <span class="bi">display</span>(i)
+<span class="cm"># Prints: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</span></code></div>
+      </div>
+      <h2 class="sub">Count Down</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Countdown</div>
+        <div class="code-body"><code><span class="kw">as</span> n <span class="kw">in</span> <span class="nm">10</span> <span class="kw">till</span> <span class="nm">1</span>:
+    <span class="bi">display</span>(<span class="st">"{n}..."</span>)
+<span class="bi">display</span>(<span class="st">"🚀 Blast off!"</span>)</code></div>
+      </div>
+      <h2 class="sub">Using Variables as Range</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Dynamic range</div>
+        <div class="code-body"><code><span class="kw">declare</span> start = <span class="nm">5</span>
+<span class="kw">declare</span> end = <span class="nm">15</span>
+
+<span class="kw">as</span> x <span class="kw">in</span> start <span class="kw">till</span> end:
+    <span class="bi">display</span>(x)</code></div>
+      </div>
+      <h2 class="sub">Nested For Loops (Multiplication Table)</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Nested loops</div>
+        <div class="code-body"><code><span class="kw">as</span> row <span class="kw">in</span> <span class="nm">1</span> <span class="kw">till</span> <span class="nm">5</span>:
+    <span class="kw">declare</span> line = <span class="st">""</span>
+    <span class="kw">as</span> col <span class="kw">in</span> <span class="nm">1</span> <span class="kw">till</span> <span class="nm">5</span>:
+        <span class="kw">set</span> line = line + <span class="bi">padRight</span>(row * col, <span class="nm">4</span>)
+    <span class="bi">display</span>(line)
+    <span class="kw">del</span> line</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ REPEAT N ═══════════════════════ -->
+    <div class="section" id="repeatn">
+      <div class="section-title">🔁 repeat this(N) <span class="badge badge-new" style="font-size:10px;margin-left:8px">NEW</span></div>
+      <p class="section-subtitle">Do something a specific number of times.</p>
+      <div class="code-block">
+        <div class="code-header">📄 5 times</div>
+        <div class="code-body"><code><span class="kw">repeat</span> <span class="kw">this</span>(<span class="nm">5</span>):
+    <span class="bi">display</span>(<span class="st">"Hello! 🌟"</span>)
+<span class="cm"># Prints "Hello! 🌟" five times</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 With counter</div>
+        <div class="code-body"><code><span class="kw">declare</span> count = <span class="nm">0</span>
+<span class="kw">repeat</span> <span class="kw">this</span>(<span class="nm">3</span>):
+    <span class="kw">set</span> count = count + <span class="nm">1</span>
+    <span class="bi">display</span>(<span class="st">"Round {count}"</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ MATCH ═══════════════════════ -->
+    <div class="section" id="match">
+      <div class="section-title">🎯 match / case / default</div>
+      <p class="section-subtitle">Cleanly check one value against many options.</p>
+      <div class="code-block">
+        <div class="code-header">📄 Basic Match</div>
+        <div class="code-body"><code><span class="kw">declare</span> day = <span class="st">"Monday"</span>
+
+<span class="kw">match</span> day:
+    <span class="kw">case</span> <span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>:
+        <span class="bi">display</span>(<span class="st">"Start of week 💪"</span>)
+    <span class="kw">case</span> <span class="st">"Wednesday"</span>:
+        <span class="bi">display</span>(<span class="st">"Midweek 🐫"</span>)
+    <span class="kw">case</span> <span class="st">"Saturday"</span>, <span class="st">"Sunday"</span>:
+        <span class="bi">display</span>(<span class="st">"Weekend! 🎉"</span>)
+    <span class="kw">default</span>:
+        <span class="bi">display</span>(<span class="st">"Regular day"</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ FLOW ═══════════════════════ -->
+    <div class="section" id="flowcontrol">
+      <div class="section-title">🚦 stop / skip / return</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Word</th><th>Where</th><th>What It Does</th></tr>
+        <tr><td><code>stop</code></td><td>Inside loop</td><td>Exit loop immediately</td></tr>
+        <tr><td><code>skip</code></td><td>Inside loop</td><td>Skip to next iteration</td></tr>
+        <tr><td><code>return value</code></td><td>Inside function</td><td>Return value and exit function</td></tr>
+        <tr><td><code>return</code></td><td>Inside function</td><td>Exit function with no value</td></tr>
+      </table></div>
+      <div class="code-block">
+        <div class="code-header">📄 stop and skip in action</div>
+        <div class="code-body"><code><span class="kw">as</span> i <span class="kw">in</span> <span class="nm">1</span> <span class="kw">till</span> <span class="nm">10</span>:
+    <span class="kw">when</span> i == <span class="nm">3</span>:
+        <span class="bi">skip</span>              <span class="cm"># skip 3</span>
+    <span class="kw">when</span> i == <span class="nm">7</span>:
+        <span class="bi">stop</span>              <span class="cm"># stop at 7</span>
+    <span class="bi">display</span>(i)
+<span class="cm"># Output: 1, 2, 4, 5, 6</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ COMPILE ═══════════════════════ -->
+    <div class="section" id="compile">
+      <div class="section-title">🛡️ compile — Error Handling</div>
+      <p class="section-subtitle">Catch errors so your program doesn't crash.</p>
+      <div class="code-block">
+        <div class="code-header">📄 Try / Catch</div>
+        <div class="code-body"><code><span class="kw">compile</span>:
+    <span class="kw">declare</span> num = <span class="bi">readNum</span>(<span class="st">"Enter number:"</span>)
+    <span class="kw">declare</span> result = <span class="nm">100</span> / num
+    <span class="bi">display</span>(<span class="st">"Result: {result}"</span>)
+<span class="kw">otherwise</span>:
+    <span class="bi">display</span>(<span class="st">"⚠️ Invalid input!"</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ ASSERT ═══════════════════════ -->
+    <div class="section" id="assert">
+      <div class="section-title">✅ assert</div>
+      <p class="section-subtitle">Check that a condition is true — crash if not.</p>
+      <div class="code-block">
+        <div class="code-header">📄 assert</div>
+        <div class="code-body"><code><span class="kw">declare</span> age = <span class="nm">25</span>
+<span class="bi">assert</span>(age >= <span class="nm">18</span>)     <span class="cm"># passes silently</span>
+<span class="bi">assert</span>(age >= <span class="nm">21</span>)     <span class="cm"># throws error</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ FUNCTIONS ═══════════════════════ -->
+    <div class="section" id="functions">
+      <div class="section-title">🔧 Functions — Complete Guide</div>
+      <h2 class="sub">Basic Function</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Simple function</div>
+        <div class="code-body"><code><span class="kw">func</span> greet(name):
+    <span class="bi">display</span>(<span class="st">"Hello, {name}! 👋"</span>)
+
+greet(<span class="st">"Alice"</span>)   <span class="cm"># Hello, Alice! 👋</span>
+greet(<span class="st">"Bob"</span>)     <span class="cm"># Hello, Bob! 👋</span></code></div>
+      </div>
+      <h2 class="sub">Return Values</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Function that returns</div>
+        <div class="code-body"><code><span class="kw">func</span> add(a, b):
+    <span class="kw">return</span> a + b
+
+<span class="kw">declare</span> sum = add(<span class="nm">10</span>, <span class="nm">5</span>)
+<span class="bi">display</span>(sum)  <span class="cm"># 15</span></code></div>
+      </div>
+      <h2 class="sub">Multiple Parameters</h2>
+      <div class="code-block">
+        <div class="code-header">📄 More arguments</div>
+        <div class="code-body"><code><span class="kw">func</span> introduce(name, age, city):
+    <span class="bi">display</span>(<span class="st">"I am {name}, {age}, from {city}"</span>)
+
+introduce(<span class="st">"Alice"</span>, <span class="nm">25</span>, <span class="st">"London"</span>)</code></div>
+      </div>
+      <h2 class="sub">Function Types</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Type</th><th>Syntax</th><th>Meaning</th></tr>
+        <tr><td>Normal</td><td><code>func name():</code></td><td>Works in this file only</td></tr>
+        <tr><td>Private</td><td><code>private func name():</code></td><td>Cannot be imported by other files</td></tr>
+        <tr><td>Exported</td><td><code>export func name():</code></td><td>Can be imported by other files</td></tr>
+      </table></div>
+      <h2 class="sub">Recursion (function calling itself)</h2>
+      <div class="code-block">
+        <div class="code-header">📄 Recursive Factorial</div>
+        <div class="code-body"><code><span class="kw">func</span> fact(n):
+    <span class="kw">when</span> n &lt;= <span class="nm">1</span>:
+        <span class="kw">return</span> <span class="nm">1</span>
+    <span class="kw">return</span> n * fact(n - <span class="nm">1</span>)
+
+<span class="bi">display</span>(fact(<span class="nm">5</span>))  <span class="cm"># 120</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ LION ═══════════════════════ -->
+    <div class="section" id="lion">
+      <div class="section-title">🦁 lion Blocks</div>
+      <p class="section-subtitle">Named inline blocks — run immediately, no need to call.</p>
+      <div class="code-block">
+        <div class="code-header">📄 lion block</div>
+        <div class="code-body"><code><span class="kw">lion</span> setup:
+    <span class="kw">declare</span> score = <span class="nm">0</span>
+    <span class="kw">declare</span> level = <span class="nm">1</span>
+    <span class="bi">display</span>(<span class="st">"Setup done"</span>)
+
+<span class="cm"># score and level are now available</span>
+<span class="bi">display</span>(<span class="st">"Score: {score}"</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ OUTPUT ═══════════════════════ -->
+    <div class="section" id="builtins">
+      <div class="section-title">🖨️ Output Functions</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Function</th><th>Style</th><th>Example</th></tr>
+        <tr><td><code>display(x)</code></td><td>Normal green text</td><td><code>display("Hello")</code></td></tr>
+        <tr><td><code>shine(x)</code></td><td>✨ Yellow highlighted</td><td><code>shine("Important!")</code></td></tr>
+        <tr><td><code>glow(x)</code></td><td>🌟 Big pink bold</td><td><code>glow("Winner!")</code></td></tr>
+        <tr><td><code>lbr</code></td><td>Blank line</td><td><code>lbr</code></td></tr>
+      </table></div>
+    </div>
+
+    <!-- ═══════════════════════ INPUT ═══════════════════════ -->
+    <div class="section" id="input">
+      <div class="section-title">💬 User Input — All 6 Functions</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Function</th><th>Returns</th><th>Modal Type</th></tr>
+        <tr><td><code>input("prompt")</code></td><td>String</td><td>Text field</td></tr>
+        <tr><td><code>message("prompt")</code></td><td>String</td><td>Text field (alias)</td></tr>
+        <tr><td><code>readNum("prompt")</code></td><td>Number</td><td>Number-only field</td></tr>
+        <tr><td><code>readPassword("prompt")</code></td><td>String</td><td>Hidden password field</td></tr>
+        <tr><td><code>confirm("question")</code></td><td>Boolean</td><td>Yes/No buttons</td></tr>
+        <tr><td><code>alert("message")</code></td><td>Nothing</td><td>OK button</td></tr>
+      </table></div>
+      <div class="code-block">
+        <div class="code-header">📄 Full Input Example</div>
+        <div class="code-body"><code><span class="kw">declare</span> name = <span class="bi">input</span>(<span class="st">"Your name?"</span>)
+<span class="kw">declare</span> age = <span class="bi">readNum</span>(<span class="st">"Your age?"</span>)
+<span class="kw">declare</span> pwd = <span class="bi">readPassword</span>(<span class="st">"Password?"</span>)
+<span class="kw">declare</span> ok = <span class="bi">confirm</span>(<span class="st">"Are you sure?"</span>)
+
+<span class="kw">when</span> ok:
+    <span class="bi">alert</span>(<span class="st">"Welcome {name}!"</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ MATH ═══════════════════════ -->
+    <div class="section" id="math">
+      <div class="section-title">🧮 Math Functions — All 40 with Examples</div>
+
+      <h3 class="sub">Basic Arithmetic</h3>
+      <div class="code-block">
+        <div class="code-header">📄 sqrt, pow, abs, round</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">sqrt</span>(<span class="nm">144</span>))          <span class="cm"># 12</span>
+<span class="bi">display</span>(<span class="bi">square</span>(<span class="nm">7</span>))          <span class="cm"># 49</span>
+<span class="bi">display</span>(<span class="bi">cube</span>(<span class="nm">3</span>))            <span class="cm"># 27</span>
+<span class="bi">display</span>(<span class="bi">cbrt</span>(<span class="nm">27</span>))           <span class="cm"># 3</span>
+<span class="bi">display</span>(<span class="bi">pow</span>(<span class="nm">2</span>, <span class="nm">10</span>))         <span class="cm"># 1024</span>
+<span class="bi">display</span>(<span class="bi">abs</span>(-<span class="nm">42</span>))           <span class="cm"># 42</span>
+<span class="bi">display</span>(<span class="bi">round</span>(<span class="nm">3.14159</span>, <span class="nm">2</span>))  <span class="cm"># 3.14</span>
+<span class="bi">display</span>(<span class="bi">decimals</span>(<span class="nm">3.14159</span>, <span class="nm">3</span>)) <span class="cm"># 3.142</span>
+<span class="bi">display</span>(<span class="bi">floor</span>(<span class="nm">3.9</span>))         <span class="cm"># 3</span>
+<span class="bi">display</span>(<span class="bi">ceil</span>(<span class="nm">3.1</span>))          <span class="cm"># 4</span>
+<span class="bi">display</span>(<span class="bi">sign</span>(-<span class="nm">5</span>))           <span class="cm"># -1</span>
+<span class="bi">display</span>(<span class="bi">sign</span>(<span class="nm">5</span>))            <span class="cm"># 1</span>
+<span class="bi">display</span>(<span class="bi">sign</span>(<span class="nm">0</span>))            <span class="cm"># 0</span></code></div>
+      </div>
+
+      <h3 class="sub">Min, Max, Clamp</h3>
+      <div class="code-block">
+        <div class="code-header">📄 Ranges</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">min</span>(<span class="nm">3</span>, <span class="nm">7</span>, <span class="nm">2</span>, <span class="nm">9</span>))       <span class="cm"># 2</span>
+<span class="bi">display</span>(<span class="bi">max</span>(<span class="nm">3</span>, <span class="nm">7</span>, <span class="nm">2</span>, <span class="nm">9</span>))       <span class="cm"># 9</span>
+<span class="bi">display</span>(<span class="bi">clamp</span>(<span class="nm">150</span>, <span class="nm">0</span>, <span class="nm">100</span>))    <span class="cm"># 100</span>
+<span class="bi">display</span>(<span class="bi">clamp</span>(-<span class="nm">50</span>, <span class="nm">0</span>, <span class="nm">100</span>))    <span class="cm"># 0</span>
+<span class="bi">display</span>(<span class="bi">clamp</span>(<span class="nm">50</span>, <span class="nm">0</span>, <span class="nm">100</span>))     <span class="cm"># 50</span></code></div>
+      </div>
+
+      <h3 class="sub">Modulo, Percent, Distance</h3>
+      <div class="code-block">
+        <div class="code-header">📄 More math</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">mod</span>(<span class="nm">10</span>, <span class="nm">3</span>))           <span class="cm"># 1</span>
+<span class="bi">display</span>(<span class="bi">percent</span>(<span class="nm">15</span>, <span class="nm">200</span>))      <span class="cm"># 30 (15% of 200)</span>
+<span class="bi">display</span>(<span class="bi">distance</span>(<span class="nm">0</span>, <span class="nm">0</span>, <span class="nm">3</span>, <span class="nm">4</span>))  <span class="cm"># 5</span>
+<span class="bi">display</span>(<span class="bi">nthroot</span>(<span class="nm">27</span>, <span class="nm">3</span>))        <span class="cm"># 3 (cube root)</span></code></div>
+      </div>
+
+      <h3 class="sub">Factorial Family</h3>
+      <div class="code-block">
+        <div class="code-header">📄 factorial and friends</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">factorial</span>(<span class="nm">5</span>))       <span class="cm"># 120 (5!)</span>
+<span class="bi">display</span>(<span class="bi">facsum</span>(<span class="nm">5</span>))          <span class="cm"># 15 (1+2+3+4+5)</span>
+<span class="bi">display</span>(<span class="bi">facsq</span>(<span class="nm">4</span>))           <span class="cm"># 30 (1+4+9+16)</span>
+<span class="bi">display</span>(<span class="bi">faccube</span>(<span class="nm">3</span>))         <span class="cm"># 36 (1+8+27)</span>
+<span class="bi">display</span>(<span class="bi">facdifference</span>(<span class="nm">5</span>))   <span class="cm"># 1-2-3-4-5</span></code></div>
+      </div>
+
+      <h3 class="sub">Fibonacci, Prime, Even/Odd</h3>
+      <div class="code-block">
+        <div class="code-header">📄 Number theory</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">fibonacci</span>(<span class="nm">10</span>))      <span class="cm"># 55</span>
+<span class="bi">display</span>(<span class="bi">isPrime</span>(<span class="nm">17</span>))        <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">primes</span>(<span class="nm">5</span>))          <span class="cm"># 2, 3, 5, 7, 11</span>
+<span class="bi">display</span>(<span class="bi">isEven</span>(<span class="nm">4</span>))          <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">isOdd</span>(<span class="nm">7</span>))           <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">evens</span>(<span class="nm">5</span>))           <span class="cm"># 2, 4, 6, 8, 10</span>
+<span class="bi">display</span>(<span class="bi">odds</span>(<span class="nm">5</span>))            <span class="cm"># 1, 3, 5, 7, 9</span>
+<span class="bi">display</span>(<span class="bi">evensBetween</span>(<span class="nm">10</span>, <span class="nm">20</span>))  <span class="cm"># 10,12,14,16,18,20</span>
+<span class="bi">display</span>(<span class="bi">oddsBetween</span>(<span class="nm">10</span>, <span class="nm">20</span>))   <span class="cm"># 11,13,15,17,19</span></code></div>
+      </div>
+
+      <h3 class="sub">LCM, HCF, GCD</h3>
+      <div class="code-block">
+        <div class="code-header">📄 Common factors</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">lcm</span>(<span class="nm">4</span>, <span class="nm">6</span>))          <span class="cm"># 12</span>
+<span class="bi">display</span>(<span class="bi">hcf</span>(<span class="nm">12</span>, <span class="nm">18</span>))        <span class="cm"># 6</span>
+<span class="bi">display</span>(<span class="bi">gcd</span>(<span class="nm">12</span>, <span class="nm">18</span>))        <span class="cm"># 6 (same as hcf)</span></code></div>
+      </div>
+
+      <h3 class="sub">Quadratic Formula</h3>
+      <div class="code-block">
+        <div class="code-header">📄 Solve ax² + bx + c = 0</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">quadratic</span>(<span class="nm">1</span>, -<span class="nm">5</span>, <span class="nm">6</span>))
+<span class="cm"># [3, 2] (roots of x² - 5x + 6 = 0)</span></code></div>
+      </div>
+
+      <h3 class="sub">Fractions and Formatting</h3>
+      <div class="code-block">
+        <div class="code-header">📄 Pretty numbers</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">fraction</span>(<span class="nm">0.75</span>))       <span class="cm"># "3/4"</span>
+<span class="bi">display</span>(<span class="bi">fraction</span>(<span class="nm">0.333</span>))      <span class="cm"># "1/3"</span>
+<span class="bi">display</span>(<span class="bi">comma</span>(<span class="nm">1234567</span>))       <span class="cm"># "1,234,567"</span>
+<span class="bi">display</span>(<span class="bi">comma</span>(<span class="nm">9876543.21</span>))    <span class="cm"># "9,876,543.21"</span></code></div>
+      </div>
+
+      <h3 class="sub">Evaluate Math Expression</h3>
+      <div class="code-block">
+        <div class="code-header">📄 math() function</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">math</span>(<span class="st">"2 + 3 * 4"</span>))     <span class="cm"># 14</span>
+<span class="bi">display</span>(<span class="bi">math</span>(<span class="st">"pi * 2"</span>))        <span class="cm"># 6.28...</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ TRIG ═══════════════════════ -->
+    <div class="section" id="trig">
+      <div class="section-title">📐 Trigonometry — All 21 Functions</div>
+      <p class="section-subtitle">All standard trig uses <strong>degrees</strong>. Use rad-prefixed for radians.</p>
+      <div class="code-block">
+        <div class="code-header">📄 Standard Trig (degrees)</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">sin</span>(<span class="nm">90</span>))              <span class="cm"># 1</span>
+<span class="bi">display</span>(<span class="bi">cos</span>(<span class="nm">0</span>))               <span class="cm"># 1</span>
+<span class="bi">display</span>(<span class="bi">tan</span>(<span class="nm">45</span>))              <span class="cm"># 1</span>
+
+<span class="bi">display</span>(<span class="bi">asin</span>(<span class="nm">1</span>))              <span class="cm"># 90 (degrees)</span>
+<span class="bi">display</span>(<span class="bi">acos</span>(<span class="nm">1</span>))              <span class="cm"># 0</span>
+<span class="bi">display</span>(<span class="bi">atan</span>(<span class="nm">1</span>))              <span class="cm"># 45</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Radian versions</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">radsin</span>(<span class="cn">pi</span> / <span class="nm">2</span>))       <span class="cm"># 1</span>
+<span class="bi">display</span>(<span class="bi">radcos</span>(<span class="cn">pi</span>))            <span class="cm"># -1</span>
+<span class="bi">display</span>(<span class="bi">radtan</span>(<span class="cn">pi</span> / <span class="nm">4</span>))       <span class="cm"># 1</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Gradian versions (400 gradians = 360°)</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">gradsin</span>(<span class="nm">100</span>))         <span class="cm"># 1</span>
+<span class="bi">display</span>(<span class="bi">gradcos</span>(<span class="nm">0</span>))           <span class="cm"># 1</span>
+<span class="bi">display</span>(<span class="bi">gradtan</span>(<span class="nm">50</span>))          <span class="cm"># 1</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Hyperbolic</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">sinh</span>(<span class="nm">1</span>))             <span class="cm"># 1.175...</span>
+<span class="bi">display</span>(<span class="bi">cosh</span>(<span class="nm">1</span>))             <span class="cm"># 1.543...</span>
+<span class="bi">display</span>(<span class="bi">tanh</span>(<span class="nm">1</span>))             <span class="cm"># 0.761...</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Logarithmic trig (log₁₀ of trig value)</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">logsin</span>(<span class="nm">30</span>))          <span class="cm"># log10(0.5)</span>
+<span class="bi">display</span>(<span class="bi">logcos</span>(<span class="nm">60</span>))          <span class="cm"># log10(0.5)</span>
+<span class="bi">display</span>(<span class="bi">logtan</span>(<span class="nm">45</span>))          <span class="cm"># log10(1) = 0</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Angle conversion</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">degToRad</span>(<span class="nm">180</span>))        <span class="cm"># π (3.14...)</span>
+<span class="bi">display</span>(<span class="bi">radToDeg</span>(<span class="cn">pi</span>))          <span class="cm"># 180</span>
+
+<span class="cm"># Aliases:</span>
+<span class="bi">display</span>(<span class="bi">degrad</span>(<span class="nm">90</span>))          <span class="cm"># π/2</span>
+<span class="bi">display</span>(<span class="bi">degtorad</span>(<span class="nm">90</span>))        <span class="cm"># π/2</span>
+<span class="bi">display</span>(<span class="bi">raddeg</span>(<span class="cn">pi</span>/<span class="nm">2</span>))         <span class="cm"># 90</span>
+<span class="bi">display</span>(<span class="bi">radtodeg</span>(<span class="cn">pi</span>/<span class="nm">2</span>))       <span class="cm"># 90</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ LOGS ═══════════════════════ -->
+    <div class="section" id="logs">
+      <div class="section-title">📊 Logarithms & Exponentials</div>
+      <div class="code-block">
+        <div class="code-header">📄 All 7 Log/Exp functions</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">log</span>(<span class="nm">100</span>, <span class="nm">10</span>))       <span class="cm"># 2 (log base 10)</span>
+<span class="bi">display</span>(<span class="bi">log</span>(<span class="nm">1000</span>))          <span class="cm"># 6.907 (natural log)</span>
+<span class="bi">display</span>(<span class="bi">ln</span>(<span class="cn">e</span>))              <span class="cm"># 1 (natural log)</span>
+<span class="bi">display</span>(<span class="bi">log10</span>(<span class="nm">1000</span>))        <span class="cm"># 3</span>
+<span class="bi">display</span>(<span class="bi">log2</span>(<span class="nm">8</span>))             <span class="cm"># 3</span>
+<span class="bi">display</span>(<span class="bi">logbase</span>(<span class="nm">100</span>, <span class="nm">10</span>))   <span class="cm"># 2</span>
+<span class="bi">display</span>(<span class="bi">antilog</span>(<span class="nm">2</span>, <span class="nm">10</span>))     <span class="cm"># 100</span>
+<span class="bi">display</span>(<span class="bi">exp</span>(<span class="nm">1</span>))             <span class="cm"># e (2.718...)</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ STATS ═══════════════════════ -->
+    <div class="section" id="stats">
+      <div class="section-title">📊 Statistics — All 7 Functions</div>
+      <div class="code-block">
+        <div class="code-header">📄 Full statistics demo</div>
+        <div class="code-body"><code><span class="kw">letarr</span> data = <span class="nm">4</span>, <span class="nm">8</span>, <span class="nm">15</span>, <span class="nm">16</span>, <span class="nm">23</span>, <span class="nm">42</span>
+
+<span class="bi">display</span>(<span class="bi">sum</span>(data))         <span class="cm"># 108</span>
+<span class="bi">display</span>(<span class="bi">avg</span>(data))         <span class="cm"># 18</span>
+<span class="bi">display</span>(<span class="bi">median</span>(data))      <span class="cm"># 15.5</span>
+<span class="bi">display</span>(<span class="bi">mode</span>(<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">2</span>,<span class="nm">3</span>,<span class="nm">3</span>,<span class="nm">3</span>))  <span class="cm"># 3</span>
+<span class="bi">display</span>(<span class="bi">stddev</span>(data))      <span class="cm"># 12.36</span>
+<span class="bi">display</span>(<span class="bi">variance</span>(data))    <span class="cm"># 152.83</span>
+<span class="bi">display</span>(<span class="bi">range</span>(data))       <span class="cm"># 38</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ NUMBER FNS ═══════════════════════ -->
+    <div class="section" id="number-fns">
+      <div class="section-title">🔢 Number Checking — All 7</div>
+      <div class="code-block">
+        <div class="code-header">📄 Number checks</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">isWhole</span>(<span class="nm">42</span>))       <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">isWhole</span>(<span class="nm">3.14</span>))     <span class="cm"># false</span>
+<span class="bi">display</span>(<span class="bi">isInteger</span>(<span class="nm">42</span>))     <span class="cm"># true (alias)</span>
+<span class="bi">display</span>(<span class="bi">isDecimal</span>(<span class="nm">3.14</span>))   <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">isPositive</span>(<span class="nm">5</span>))     <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">isNegative</span>(-<span class="nm">3</span>))    <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">isZero</span>(<span class="nm">0</span>))         <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">isEven</span>(<span class="nm">4</span>))         <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">isOdd</span>(<span class="nm">7</span>))          <span class="cm"># true</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ STRING FNS ═══════════════════════ -->
+    <div class="section" id="string-fns">
+      <div class="section-title">📝 String Functions — All 20</div>
+      <div class="code-block">
+        <div class="code-header">📄 Case functions</div>
+        <div class="code-body"><code><span class="kw">declare</span> s = <span class="st">"hello world"</span>
+<span class="bi">display</span>(<span class="bi">upper</span>(s))         <span class="cm"># HELLO WORLD</span>
+<span class="bi">display</span>(<span class="bi">lower</span>(<span class="st">"HELLO"</span>))    <span class="cm"># hello</span>
+<span class="bi">display</span>(<span class="bi">capitalize</span>(s))    <span class="cm"># Hello World</span>
+<span class="bi">display</span>(<span class="bi">sentence</span>(s))      <span class="cm"># Hello world</span>
+<span class="bi">display</span>(<span class="bi">toggle</span>(<span class="st">"HeLLo"</span>))   <span class="cm"># hEllO</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Length, trim, reverse</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">len</span>(<span class="st">"hello"</span>))      <span class="cm"># 5</span>
+<span class="bi">display</span>(<span class="bi">trim</span>(<span class="st">"  hi  "</span>))    <span class="cm"># "hi"</span>
+<span class="bi">display</span>(<span class="bi">reverse</span>(<span class="st">"hello"</span>))  <span class="cm"># olleh</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Search and replace</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">replace</span>(<span class="st">"hi world"</span>, <span class="st">"world"</span>, <span class="st">"there"</span>))
+<span class="cm"># hi there</span>
+<span class="bi">display</span>(<span class="bi">includes</span>(<span class="st">"hello"</span>, <span class="st">"ell"</span>))    <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">startsWith</span>(<span class="st">"hello"</span>, <span class="st">"he"</span>))  <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">endsWith</span>(<span class="st">"hello"</span>, <span class="st">"lo"</span>))    <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">search</span>(<span class="st">"hello world"</span>, <span class="st">"world"</span>)) <span class="cm"># true</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Extract and split</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">charAt</span>(<span class="st">"hello"</span>, <span class="nm">1</span>))    <span class="cm"># e</span>
+<span class="bi">display</span>(<span class="bi">pick</span>(<span class="st">"hello"</span>, <span class="nm">0</span>))      <span class="cm"># h (alias)</span>
+<span class="bi">display</span>(<span class="bi">split</span>(<span class="st">"a,b,c"</span>, <span class="st">","</span>))   <span class="cm"># a, b, c</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Repeat and pad</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">repeat</span>(<span class="st">"⭐"</span>, <span class="nm">5</span>))       <span class="cm"># ⭐⭐⭐⭐⭐</span>
+<span class="bi">display</span>(<span class="bi">padLeft</span>(<span class="st">"7"</span>, <span class="nm">3</span>, <span class="st">"0"</span>))   <span class="cm"># "007"</span>
+<span class="bi">display</span>(<span class="bi">padRight</span>(<span class="st">"7"</span>, <span class="nm">3</span>, <span class="st">"."</span>))  <span class="cm"># "7.."</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Word count</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">wordCount</span>(<span class="st">"hello world today"</span>))
+<span class="cm"># 3</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ ARRAY FNS ═══════════════════════ -->
+    <div class="section" id="array-fns">
+      <div class="section-title">📊 Array Functions — All 27</div>
+      <p>Full list already in <a href="#arrays" style="color:var(--gold)">Arrays section</a> above. Here are complete working examples for each category:</p>
+
+      <div class="code-block">
+        <div class="code-header">📄 Adding and Removing</div>
+        <div class="code-body"><code><span class="kw">letarr</span> nums = <span class="nm">10</span>, <span class="nm">20</span>, <span class="nm">30</span>
+
+<span class="bi">add</span>(nums, <span class="nm">40</span>)              <span class="cm"># [10,20,30,40]</span>
+<span class="bi">addFirst</span>(nums, <span class="nm">5</span>)          <span class="cm"># [5,10,20,30,40]</span>
+<span class="bi">insertAt</span>(nums, <span class="nm">2</span>, <span class="nm">99</span>)      <span class="cm"># insert 99 at index 2</span>
+<span class="bi">remove</span>(nums)                <span class="cm"># remove last</span>
+<span class="bi">removeFirst</span>(nums)           <span class="cm"># remove first</span>
+<span class="bi">removeAt</span>(nums, <span class="nm">0</span>)          <span class="cm"># remove at index</span>
+<span class="bi">removeItem</span>(nums, <span class="nm">99</span>)       <span class="cm"># remove first 99</span></code></div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">📄 Transformations</div>
+        <div class="code-body"><code><span class="kw">letarr</span> nums = <span class="nm">3</span>, <span class="nm">1</span>, <span class="nm">4</span>, <span class="nm">1</span>, <span class="nm">5</span>, <span class="nm">9</span>, <span class="nm">2</span>
+
+<span class="bi">display</span>(<span class="bi">sort</span>(nums))     <span class="cm"># [1,1,2,3,4,5,9]</span>
+<span class="bi">display</span>(<span class="bi">dsort</span>(nums))    <span class="cm"># [9,5,4,3,2,1,1]</span>
+<span class="bi">display</span>(<span class="bi">reverse</span>(nums))  <span class="cm"># [2,9,5,1,4,1,3]</span>
+<span class="bi">display</span>(<span class="bi">unique</span>(nums))   <span class="cm"># [3,1,4,5,9,2]</span></code></div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">📄 Querying</div>
+        <div class="code-body"><code><span class="kw">letarr</span> nums = <span class="nm">10</span>, <span class="nm">20</span>, <span class="nm">30</span>, <span class="nm">20</span>
+
+<span class="bi">display</span>(<span class="bi">first</span>(nums))       <span class="cm"># 10</span>
+<span class="bi">display</span>(<span class="bi">last</span>(nums))        <span class="cm"># 20</span>
+<span class="bi">display</span>(<span class="bi">len</span>(nums))         <span class="cm"># 4</span>
+<span class="bi">display</span>(<span class="bi">count</span>(nums, <span class="nm">20</span>))    <span class="cm"># 2</span>
+<span class="bi">display</span>(<span class="bi">contains</span>(nums, <span class="nm">30</span>)) <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">indexOf</span>(nums, <span class="nm">30</span>))  <span class="cm"># 2</span></code></div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">📄 Slicing and Joining</div>
+        <div class="code-body"><code><span class="kw">letarr</span> nums = <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>
+
+<span class="bi">display</span>(<span class="bi">slice</span>(nums, <span class="nm">1</span>, <span class="nm">4</span>))  <span class="cm"># [2,3,4]</span>
+<span class="bi">display</span>(<span class="bi">concat</span>(nums, [<span class="nm">6</span>,<span class="nm">7</span>])) <span class="cm"># [1..7]</span>
+<span class="bi">display</span>(<span class="bi">join</span>(nums, <span class="st">"-"</span>))    <span class="cm"># "1-2-3-4-5"</span></code></div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">📄 Advanced</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">flatten</span>([[<span class="nm">1</span>,<span class="nm">2</span>],[<span class="nm">3</span>,<span class="nm">4</span>]]))
+<span class="cm"># [1,2,3,4]</span>
+<span class="bi">display</span>(<span class="bi">chunk</span>([<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">3</span>,<span class="nm">4</span>,<span class="nm">5</span>,<span class="nm">6</span>], <span class="nm">2</span>))
+<span class="cm"># [[1,2],[3,4],[5,6]]</span>
+<span class="bi">display</span>(<span class="bi">zip</span>([<span class="st">"a"</span>,<span class="st">"b"</span>], [<span class="nm">1</span>,<span class="nm">2</span>]))
+<span class="cm"># [["a",1],["b",2]]</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ TYPE FNS ═══════════════════════ -->
+    <div class="section" id="type-fns">
+      <div class="section-title">🔍 Type Checking — All 6</div>
+      <div class="code-block">
+        <div class="code-header">📄 Type checks</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">isNum</span>(<span class="nm">42</span>))       <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">isStr</span>(<span class="st">"hi"</span>))     <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">isArr</span>([<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">3</span>]))  <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">isBool</span>(<span class="bl">yes</span>))    <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">type</span>(<span class="nm">42</span>))        <span class="cm"># "number"</span>
+<span class="bi">display</span>(<span class="bi">type</span>(<span class="st">"hi"</span>))      <span class="cm"># "string"</span>
+<span class="bi">display</span>(<span class="bi">type</span>([<span class="nm">1</span>,<span class="nm">2</span>]))     <span class="cm"># "array"</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ CONVERT FNS ═══════════════════════ -->
+    <div class="section" id="convert-fns">
+      <div class="section-title">🔢 Type Conversion — All 6</div>
+      <div class="code-block">
+        <div class="code-header">📄 Convert between types</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">bin</span>(<span class="nm">10</span>))          <span class="cm"># "1010"</span>
+<span class="bi">display</span>(<span class="bi">oct</span>(<span class="nm">64</span>))          <span class="cm"># "100"</span>
+<span class="bi">display</span>(<span class="bi">hex</span>(<span class="nm">255</span>))         <span class="cm"># "FF"</span>
+<span class="bi">display</span>(<span class="bi">toInt</span>(<span class="st">"42"</span>))       <span class="cm"># 42</span>
+<span class="bi">display</span>(<span class="bi">toNum</span>(<span class="st">"3.14"</span>))     <span class="cm"># 3.14</span>
+<span class="bi">display</span>(<span class="bi">toStr</span>(<span class="nm">42</span>))         <span class="cm"># "42"</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ RANDOM ═══════════════════════ -->
+    <div class="section" id="random-fns">
+      <div class="section-title">🎲 Random — All 4</div>
+      <div class="code-block">
+        <div class="code-header">📄 Random functions</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">random</span>())           <span class="cm"># 0.xxx (0-1)</span>
+<span class="bi">display</span>(<span class="bi">randInt</span>(<span class="nm">1</span>, <span class="nm">100</span>))    <span class="cm"># random 1-100</span>
+<span class="bi">display</span>(<span class="bi">randText</span>(<span class="nm">8</span>))        <span class="cm"># "a7bcd82k"</span>
+
+<span class="kw">letarr</span> colors = <span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>
+<span class="bi">display</span>(<span class="bi">randomChoice</span>(colors))  <span class="cm"># random one</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ SOLVE ═══════════════════════ -->
+    <div class="section" id="solve">
+      <div class="section-title">🔣 solve() — Equation Solver <span class="badge badge-new" style="font-size:10px;margin-left:8px">NEW</span></div>
+      <div class="code-block">
+        <div class="code-header">📄 Linear</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">solve</span>(<span class="st">"2x + 5 = 15"</span>))    <span class="cm"># x = 5</span>
+<span class="bi">display</span>(<span class="bi">solve</span>(<span class="st">"3x - 9 = 0"</span>))     <span class="cm"># x = 3</span>
+<span class="bi">display</span>(<span class="bi">solve</span>(<span class="st">"4x = 20"</span>))        <span class="cm"># x = 5</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Quadratic</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">solve</span>(<span class="st">"x^2 - 5x + 6 = 0"</span>))
+<span class="cm"># x = 3 or x = 2</span>
+<span class="bi">display</span>(<span class="bi">solve</span>(<span class="st">"x^2 + 4 = 0"</span>))
+<span class="cm"># x = 0+2i or x = 0-2i (complex)</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ SIMULTANEOUS ═══════════════════════ -->
+    <div class="section" id="simultaneous">
+      <div class="section-title">📐 simultaneousLinear() <span class="badge badge-new" style="font-size:10px;margin-left:8px">NEW</span></div>
+      <div class="code-block">
+        <div class="code-header">📄 Two equations, two unknowns</div>
+        <div class="code-body"><code><span class="kw">declare</span> r = <span class="bi">simultaneousLinear</span>(<span class="st">"2x + 3y = 12"</span>, <span class="st">"x - y = 1"</span>)
+<span class="bi">display</span>(r[<span class="st">"x"</span>])  <span class="cm"># 3</span>
+<span class="bi">display</span>(r[<span class="st">"y"</span>])  <span class="cm"># 2</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ MATH SETS ═══════════════════════ -->
+    <div class="section" id="mathsets">
+      <div class="section-title">🧮 mathset() — All 17 Operations <span class="badge badge-new" style="font-size:10px;margin-left:8px">NEW</span></div>
+      <div class="code-block">
+        <div class="code-header">📄 Basic operations</div>
+        <div class="code-body"><code><span class="kw">letset</span> A = <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>
+<span class="kw">letset</span> B = <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>, <span class="nm">6</span>, <span class="nm">7</span>
+
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"union"</span>, A, B))         <span class="cm"># 1,2,3,4,5,6,7</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"intersection"</span>, A, B))  <span class="cm"># 3,4,5</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"difference"</span>, A, B))    <span class="cm"># 1,2</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"symmetric"</span>, A, B))     <span class="cm"># 1,2,6,7</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Relations</div>
+        <div class="code-body"><code><span class="kw">letset</span> C = <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"isSubset"</span>, C, A))         <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"isSuperset"</span>, A, C))       <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"isProperSubset"</span>, C, A))   <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"isEqual"</span>, A, B))          <span class="cm"># false</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"isDisjoint"</span>, A, B))       <span class="cm"># false</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Properties & membership</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"cardinality"</span>, A))     <span class="cm"># 5</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"isMember"</span>, A, <span class="nm">3</span>))     <span class="cm"># true</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"isMember"</span>, A, <span class="nm">99</span>))    <span class="cm"># false</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Advanced: powerset & cartesian</div>
+        <div class="code-body"><code><span class="kw">letset</span> S = <span class="nm">1</span>, <span class="nm">2</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"powerset"</span>, S))
+<span class="cm"># [[], [1], [2], [1,2]]</span>
+
+<span class="kw">letset</span> X = <span class="nm">1</span>, <span class="nm">2</span>
+<span class="kw">letset</span> Y = <span class="st">"a"</span>, <span class="st">"b"</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"cartesian"</span>, X, Y))
+<span class="cm"># [[1,"a"], [1,"b"], [2,"a"], [2,"b"]]</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Complement (needs universal set)</div>
+        <div class="code-body"><code><span class="kw">letset</span> A = <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>
+<span class="kw">letset</span> U = <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>, <span class="nm">6</span>, <span class="nm">7</span>, <span class="nm">8</span>, <span class="nm">9</span>, <span class="nm">10</span>
+
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"complement"</span>, A, U))
+<span class="cm"># 4, 5, 6, 7, 8, 9, 10</span></code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 Modify sets</div>
+        <div class="code-body"><code><span class="kw">letset</span> A = <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"add"</span>, A, <span class="nm">4</span>))          <span class="cm"># 1,2,3,4</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"remove"</span>, A, <span class="nm">2</span>))       <span class="cm"># 1,3</span>
+<span class="bi">display</span>(<span class="bi">mathset</span>(<span class="st">"toset"</span>, [<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">2</span>,<span class="nm">3</span>]))   <span class="cm"># 1,2,3</span></code></div>
+      </div>
+      <h2 class="sub">All 17 Operations Reference</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>#</th><th>Operation</th><th>Purpose</th></tr>
+        <tr><td>1</td><td><code>"union"</code></td><td>A ∪ B</td></tr>
+        <tr><td>2</td><td><code>"intersection"</code></td><td>A ∩ B</td></tr>
+        <tr><td>3</td><td><code>"difference"</code></td><td>A - B</td></tr>
+        <tr><td>4</td><td><code>"symmetric"</code></td><td>A △ B</td></tr>
+        <tr><td>5</td><td><code>"complement"</code></td><td>A' (needs U)</td></tr>
+        <tr><td>6</td><td><code>"isSubset"</code></td><td>A ⊆ B</td></tr>
+        <tr><td>7</td><td><code>"isSuperset"</code></td><td>A ⊇ B</td></tr>
+        <tr><td>8</td><td><code>"isProperSubset"</code></td><td>A ⊂ B</td></tr>
+        <tr><td>9</td><td><code>"isProperSuperset"</code></td><td>A ⊃ B</td></tr>
+        <tr><td>10</td><td><code>"isEqual"</code></td><td>A = B</td></tr>
+        <tr><td>11</td><td><code>"isDisjoint"</code></td><td>A ∩ B = ∅</td></tr>
+        <tr><td>12</td><td><code>"cardinality"</code></td><td>|A|</td></tr>
+        <tr><td>13</td><td><code>"isMember"</code></td><td>x ∈ A</td></tr>
+        <tr><td>14</td><td><code>"powerset"</code></td><td>P(A)</td></tr>
+        <tr><td>15</td><td><code>"cartesian"</code></td><td>A × B</td></tr>
+        <tr><td>16</td><td><code>"add"</code></td><td>A ∪ {x}</td></tr>
+        <tr><td>17</td><td><code>"remove"</code></td><td>A - {x}</td></tr>
+      </table></div>
+    </div>
+
+    <!-- ═══════════════════════ SET SYMBOLS ═══════════════════════ -->
+    <div class="section" id="set-symbols">
+      <div class="section-title">∪ Set Symbol Constants — All 10</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Constant</th><th>Symbol</th><th>Meaning</th></tr>
+        <tr><td><code>unionSymbol</code></td><td>∪</td><td>Union</td></tr>
+        <tr><td><code>intersectionSymbol</code></td><td>∩</td><td>Intersection</td></tr>
+        <tr><td><code>subsetSymbol</code></td><td>⊆</td><td>Subset or equal</td></tr>
+        <tr><td><code>supersetSymbol</code></td><td>⊇</td><td>Superset or equal</td></tr>
+        <tr><td><code>properSubsetSymbol</code></td><td>⊂</td><td>Proper subset</td></tr>
+        <tr><td><code>properSupersetSymbol</code></td><td>⊃</td><td>Proper superset</td></tr>
+        <tr><td><code>emptySetSymbol</code></td><td>∅</td><td>Empty set</td></tr>
+        <tr><td><code>elementOfSymbol</code></td><td>∈</td><td>Element of</td></tr>
+        <tr><td><code>notElementOfSymbol</code></td><td>∉</td><td>Not element of</td></tr>
+        <tr><td><code>universalSetSymbol</code></td><td>𝕌</td><td>Universal set</td></tr>
+      </table></div>
+      <div class="code-block">
+        <div class="code-header">📄 Beautiful math output</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="st">"A "</span> + <span class="cn">unionSymbol</span> + <span class="st">" B = "</span> + <span class="bi">mathset</span>(<span class="st">"union"</span>, A, B))
+<span class="cm"># A ∪ B = 1, 2, 3, 4, 5, 6, 7</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ WEB ═══════════════════════ -->
+    <div class="section" id="web">
+      <div class="section-title">🌐 Web Output</div>
+      <p class="section-subtitle">Build full HTML5 pages inside your Littlestar code.</p>
+      <div class="code-block">
+        <div class="code-header">📄 Simple web page</div>
+        <div class="code-body"><code><span class="kw">declare</span> title = <span class="st">"My Page"</span>
+<span class="kw">web</span>:
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;&lt;title&gt;{title}&lt;/title&gt;
+    &lt;style&gt;
+        body{background:#111;color:#fff;padding:40px;font-family:sans-serif;}
+        h1{color:gold;}
+    &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;🌟 {title}&lt;/h1&gt;
+        &lt;p&gt;Made with Littlestar!&lt;/p&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;</code></div>
+      </div>
+      <div class="callout callout-info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <strong>Requirements</strong>
+          <p>Must include <ic>&lt;!DOCTYPE html&gt;</ic>. Use <ic>{variable}</ic> to inject values. Click the <strong>Web</strong> tab to see it.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ MODULES ═══════════════════════ -->
+    <div class="section" id="modules">
+      <div class="section-title">📥 Modules & Imports</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Create a second file</h4><p>Click + in the tab bar. Name it <ic>utils.lstar</ic>.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Use export func</h4><p>Only functions marked <ic>export</ic> can be imported.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Import from main file</h4><p>Use <ic>import funcName from utils</ic>.</p></div></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 utils.lstar</div>
+        <div class="code-body"><code><span class="kw">module</span> littlestar:
+    <span class="sp">spark</span> <span class="bi">main</span>(<span class="nm">1</span>):
+        <span class="kw">export</span> <span class="kw">func</span> double(x):
+            <span class="kw">return</span> x * <span class="nm">2</span>
+        <span class="kw">export</span> <span class="kw">func</span> greet(name):
+            <span class="bi">display</span>(<span class="st">"Hi {name}"</span>)
+    <span class="sp">spark</span> <span class="bi">print</span>:
+        <span class="bi">main</span>(<span class="nm">1</span>)</code></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">📄 main.lstar</div>
+        <div class="code-body"><code><span class="kw">module</span> littlestar:
+    <span class="sp">spark</span> <span class="bi">main</span>(<span class="nm">1</span>):
+        <span class="kw">import</span> double <span class="kw">from</span> utils
+        <span class="kw">import</span> greet <span class="kw">from</span> utils
+        <span class="bi">display</span>(double(<span class="nm">5</span>))     <span class="cm"># 10</span>
+        greet(<span class="st">"Alice"</span>)          <span class="cm"># Hi Alice</span>
+    <span class="sp">spark</span> <span class="bi">print</span>:
+        <span class="bi">main</span>(<span class="nm">1</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ DATABASES ═══════════════════════ -->
+    <div class="section" id="databases">
+      <div class="section-title">🗃️ Databases</div>
+      <div class="code-block">
+        <div class="code-header">📄 Complete database example</div>
+        <div class="code-body"><code><span class="kw">module</span> littlestardb:
+    <span class="kw">createdb</span> students:
+        name: <span class="st">"Alice"</span>
+        age: <span class="nm">20</span>
+        grade: <span class="st">"A"</span>
+        Record:
+        name: <span class="st">"Bob"</span>
+        age: <span class="nm">22</span>
+        grade: <span class="st">"B"</span>
+        Record:
+        name: <span class="st">"Carol"</span>
+        age: <span class="nm">19</span>
+        grade: <span class="st">"A"</span>
+
+<span class="kw">module</span> littlestar:
+    <span class="sp">spark</span> <span class="bi">main</span>(<span class="nm">1</span>):
+        <span class="kw">letarr</span> all = <span class="bi">fetch</span>(students)
+        <span class="bi">display</span>(all)
+
+        <span class="kw">letarr</span> first = <span class="bi">fetch</span>(students.<span class="nm">1</span>)
+        <span class="bi">display</span>(first[<span class="st">"name"</span>])
+
+        <span class="bi">display</span>(<span class="bi">countdb</span>(<span class="st">"students"</span>))    <span class="cm"># 3</span>
+        <span class="bi">display</span>(<span class="bi">hasdb</span>(<span class="st">"students"</span>))      <span class="cm"># true</span>
+        <span class="bi">display</span>(<span class="bi">listdbs</span>())              <span class="cm"># [students]</span>
+
+    <span class="sp">spark</span> <span class="bi">print</span>:
+        <span class="bi">main</span>(<span class="nm">1</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ FILES ═══════════════════════ -->
+    <div class="section" id="files">
+      <div class="section-title">📁 File System — All Commands</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Function/Command</th><th>What It Does</th></tr>
+        <tr><td><code>write("file.txt", text)</code></td><td>Create/overwrite file</td></tr>
+        <tr><td><code>read("file.txt")</code></td><td>Read file contents</td></tr>
+        <tr><td><code>append("file.txt", text)</code></td><td>Add to end of file</td></tr>
+        <tr><td><code>exists("file.txt")</code></td><td>Check if file exists</td></tr>
+        <tr><td><code>delete file "file.txt"</code></td><td>Delete file</td></tr>
+        <tr><td><code>savefile "file.txt"</code></td><td>Confirm saved to memory</td></tr>
+        <tr><td><code>exportfile "file.txt"</code></td><td>Download to your computer (needs creator mode)</td></tr>
+        <tr><td><code>save dbName to "file.txt"</code></td><td>Export database as file</td></tr>
+      </table></div>
+      <div class="code-block">
+        <div class="code-header">📄 Complete file example</div>
+        <div class="code-body"><code><span class="bi">write</span>(<span class="st">"notes.txt"</span>, <span class="st">"Line 1\n"</span>)
+<span class="bi">append</span>(<span class="st">"notes.txt"</span>, <span class="st">"Line 2\n"</span>)
+<span class="bi">append</span>(<span class="st">"notes.txt"</span>, <span class="st">"Line 3\n"</span>)
+
+<span class="kw">declare</span> content = <span class="bi">read</span>(<span class="st">"notes.txt"</span>)
+<span class="bi">display</span>(content)
+
+<span class="bi">display</span>(<span class="bi">exists</span>(<span class="st">"notes.txt"</span>))     <span class="cm"># true</span>
+<span class="kw">delete</span> <span class="kw">file</span> <span class="st">"notes.txt"</span>
+<span class="bi">display</span>(<span class="bi">exists</span>(<span class="st">"notes.txt"</span>))     <span class="cm"># false</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ HTTP ═══════════════════════ -->
+    <div class="section" id="http">
+      <div class="section-title">🌐 HTTP Requests</div>
+      <div class="code-block">
+        <div class="code-header">📄 All 4 HTTP methods</div>
+        <div class="code-body"><code><span class="kw">declare</span> data = <span class="bi">httpGet</span>(<span class="st">"https://api.example.com/users"</span>)
+<span class="bi">display</span>(data)
+
+<span class="kw">declare</span> resp = <span class="bi">httpPost</span>(<span class="st">"https://api.example.com/users"</span>, <span class="st">'{"name":"Alice"}'</span>)
+<span class="bi">display</span>(resp)
+
+<span class="kw">declare</span> upd = <span class="bi">httpPut</span>(<span class="st">"https://api.example.com/users/1"</span>, <span class="st">'{"age":25}'</span>)
+<span class="kw">declare</span> del = <span class="bi">httpDelete</span>(<span class="st">"https://api.example.com/users/1"</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ JSON ═══════════════════════ -->
+    <div class="section" id="json">
+      <div class="section-title">📋 JSON</div>
+      <div class="code-block">
+        <div class="code-header">📄 Parse and stringify</div>
+        <div class="code-body"><code><span class="kw">declare</span> jsonText = <span class="st">'{"name":"Alice","age":25}'</span>
+<span class="kw">declare</span> obj = <span class="bi">jsonParse</span>(jsonText)
+<span class="bi">display</span>(obj[<span class="st">"name"</span>])     <span class="cm"># Alice</span>
+<span class="bi">display</span>(obj[<span class="st">"age"</span>])      <span class="cm"># 25</span>
+
+<span class="kw">letobj</span> person:
+    name: <span class="st">"Bob"</span>
+    age: <span class="nm">30</span>
+<span class="bi">display</span>(<span class="bi">jsonStringify</span>(person))
+<span class="cm"># {"name":"Bob","age":30}</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ DATETIME ═══════════════════════ -->
+    <div class="section" id="datetime">
+      <div class="section-title">📅 Date & Time — All 14 Functions</div>
+      <div class="code-block">
+        <div class="code-header">📄 All date/time functions</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">datenow</span>())       <span class="cm"># "10/16/2024"</span>
+<span class="bi">display</span>(<span class="bi">timenow</span>())       <span class="cm"># "14:30:45"</span>
+<span class="bi">display</span>(<span class="bi">yearnow</span>())       <span class="cm"># 2024</span>
+<span class="bi">display</span>(<span class="bi">monthnow</span>())      <span class="cm"># 10</span>
+<span class="bi">display</span>(<span class="bi">daynow</span>())        <span class="cm"># 16</span>
+<span class="bi">display</span>(<span class="bi">hournow</span>())       <span class="cm"># 14</span>
+<span class="bi">display</span>(<span class="bi">minutenow</span>())     <span class="cm"># 30</span>
+<span class="bi">display</span>(<span class="bi">secondnow</span>())     <span class="cm"># 45</span>
+<span class="bi">display</span>(<span class="bi">weekdayNow</span>())    <span class="cm"># "Wednesday"</span>
+<span class="bi">display</span>(<span class="bi">timestamp</span>())     <span class="cm"># 1729080645000</span>
+<span class="bi">display</span>(<span class="bi">months</span>())        <span class="cm"># [January, February...]</span>
+<span class="bi">display</span>(<span class="bi">days</span>())          <span class="cm"># [Sunday, Monday...]</span></code></div>
+      </div>
+      <h2 class="sub">format() Pattern Tokens</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Token</th><th>Output</th></tr>
+        <tr><td><code>YYYY</code></td><td>2024</td></tr>
+        <tr><td><code>MMMM</code></td><td>January</td></tr>
+        <tr><td><code>MMM</code></td><td>Jan</td></tr>
+        <tr><td><code>MM</code></td><td>01</td></tr>
+        <tr><td><code>DD</code></td><td>15</td></tr>
+        <tr><td><code>dddd</code></td><td>Monday</td></tr>
+        <tr><td><code>dd</code></td><td>Mon</td></tr>
+        <tr><td><code>HH</code></td><td>14</td></tr>
+        <tr><td><code>mm</code></td><td>30</td></tr>
+        <tr><td><code>ss</code></td><td>45</td></tr>
+      </table></div>
+      <div class="code-block">
+        <div class="code-header">📄 format() and elapsed()</div>
+        <div class="code-body"><code><span class="kw">declare</span> now = <span class="bi">timestamp</span>()
+<span class="bi">display</span>(<span class="bi">format</span>(now, <span class="st">"YYYY-MM-DD HH:mm:ss"</span>))
+<span class="bi">display</span>(<span class="bi">format</span>(now, <span class="st">"dddd, MMMM DD, YYYY"</span>))
+
+<span class="kw">declare</span> start = <span class="bi">timestamp</span>()
+<span class="cm"># ... do work ...</span>
+<span class="bi">display</span>(<span class="st">"Took: {elapsed(start)} ms"</span>)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ CONVERT ═══════════════════════ -->
+    <div class="section" id="convert">
+      <div class="section-title">📏 Unit Conversion — All Categories</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Category</th><th>Available Units</th></tr>
+        <tr><td>Length</td><td><code>meter, cm, mm, inch, ft, yard, mile</code></td></tr>
+        <tr><td>Mass</td><td><code>kg, g, mg, lb, oz, ton</code></td></tr>
+        <tr><td>Time</td><td><code>s, ms, min, hour, day, week, year, decade, century, millennium</code></td></tr>
+        <tr><td>Data</td><td><code>B, KB, MB, GB, TB, PB</code></td></tr>
+        <tr><td>Volume</td><td><code>L, mL, gallon, quart, pint, cup</code></td></tr>
+        <tr><td>Speed</td><td><code>m/s, km/h, mph, fps</code></td></tr>
+        <tr><td>Angle</td><td><code>deg, rad</code></td></tr>
+      </table></div>
+      <div class="code-block">
+        <div class="code-header">📄 convert()</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">convert</span>(<span class="nm">5</span>, meter, cm))       <span class="cm"># 500</span>
+<span class="bi">display</span>(<span class="bi">convert</span>(<span class="nm">100</span>, lb, kg))      <span class="cm"># 45.36</span>
+<span class="bi">display</span>(<span class="bi">convert</span>(<span class="nm">2</span>, hour, min))     <span class="cm"># 120</span>
+<span class="bi">display</span>(<span class="bi">convert</span>(<span class="nm">1</span>, GB, MB))        <span class="cm"># 1024</span>
+<span class="bi">display</span>(<span class="bi">convert</span>(<span class="nm">1</span>, gallon, L))    <span class="cm"># 3.785</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ CURRENCY ═══════════════════════ -->
+    <div class="section" id="currency">
+      <div class="section-title">💱 Currency — All 150+ Supported</div>
+      <p class="section-subtitle">Live rates from the internet, cached for 1 hour.</p>
+      <div class="code-block">
+        <div class="code-header">📄 convertCurrency()</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">convertCurrency</span>(<span class="nm">100</span>, USD, EUR))
+<span class="bi">display</span>(<span class="bi">convertCurrency</span>(<span class="nm">100</span>, USD, NGN))
+<span class="bi">display</span>(<span class="bi">convertCurrency</span>(<span class="nm">100</span>, USD, JPY))</code></div>
+      </div>
+      <h2 class="sub">All Supported Currency Codes</h2>
+      <p><strong>Americas (34):</strong></p>
+      <div class="currency-list">
+        <div class="currency-item">USD</div><div class="currency-item">CAD</div><div class="currency-item">MXN</div><div class="currency-item">BRL</div><div class="currency-item">ARS</div><div class="currency-item">CLP</div><div class="currency-item">COP</div><div class="currency-item">PEN</div><div class="currency-item">BOB</div><div class="currency-item">PYG</div><div class="currency-item">UYU</div><div class="currency-item">VES</div><div class="currency-item">GYD</div><div class="currency-item">SRD</div><div class="currency-item">BSD</div><div class="currency-item">PAB</div><div class="currency-item">BMD</div><div class="currency-item">KYD</div><div class="currency-item">BBD</div><div class="currency-item">BZD</div><div class="currency-item">XCD</div><div class="currency-item">TTD</div><div class="currency-item">JMD</div><div class="currency-item">HTG</div><div class="currency-item">DOP</div><div class="currency-item">CUP</div><div class="currency-item">CUC</div><div class="currency-item">AWG</div><div class="currency-item">ANG</div><div class="currency-item">GTQ</div><div class="currency-item">HNL</div><div class="currency-item">NIO</div><div class="currency-item">SVC</div><div class="currency-item">CRC</div>
+      </div>
+      <p><strong>Europe (24):</strong></p>
+      <div class="currency-list">
+        <div class="currency-item">EUR</div><div class="currency-item">GBP</div><div class="currency-item">CHF</div><div class="currency-item">SEK</div><div class="currency-item">NOK</div><div class="currency-item">DKK</div><div class="currency-item">ISK</div><div class="currency-item">PLN</div><div class="currency-item">CZK</div><div class="currency-item">HUF</div><div class="currency-item">RON</div><div class="currency-item">BGN</div><div class="currency-item">ALL</div><div class="currency-item">MKD</div><div class="currency-item">RSD</div><div class="currency-item">BAM</div><div class="currency-item">UAH</div><div class="currency-item">MDL</div><div class="currency-item">BYN</div><div class="currency-item">RUB</div><div class="currency-item">TRY</div><div class="currency-item">GIP</div><div class="currency-item">FKP</div><div class="currency-item">SHP</div>
+      </div>
+      <p><strong>Asia (25):</strong></p>
+      <div class="currency-list">
+        <div class="currency-item">JPY</div><div class="currency-item">CNY</div><div class="currency-item">INR</div><div class="currency-item">PKR</div><div class="currency-item">BDT</div><div class="currency-item">LKR</div><div class="currency-item">NPR</div><div class="currency-item">MVR</div><div class="currency-item">BTN</div><div class="currency-item">KRW</div><div class="currency-item">KPW</div><div class="currency-item">HKD</div><div class="currency-item">MOP</div><div class="currency-item">TWD</div><div class="currency-item">MNT</div><div class="currency-item">SGD</div><div class="currency-item">MYR</div><div class="currency-item">THB</div><div class="currency-item">IDR</div><div class="currency-item">PHP</div><div class="currency-item">VND</div><div class="currency-item">KHR</div><div class="currency-item">LAK</div><div class="currency-item">MMK</div><div class="currency-item">BND</div>
+      </div>
+      <p><strong>Middle East (14):</strong></p>
+      <div class="currency-list">
+        <div class="currency-item">AED</div><div class="currency-item">SAR</div><div class="currency-item">QAR</div><div class="currency-item">KWD</div><div class="currency-item">BHD</div><div class="currency-item">OMR</div><div class="currency-item">JOD</div><div class="currency-item">ILS</div><div class="currency-item">YER</div><div class="currency-item">LBP</div><div class="currency-item">SYP</div><div class="currency-item">IQD</div><div class="currency-item">IRR</div><div class="currency-item">AFN</div>
+      </div>
+      <p><strong>Central Asia (8):</strong></p>
+      <div class="currency-list">
+        <div class="currency-item">GEL</div><div class="currency-item">AMD</div><div class="currency-item">AZN</div><div class="currency-item">KZT</div><div class="currency-item">KGS</div><div class="currency-item">TJS</div><div class="currency-item">TMT</div><div class="currency-item">UZS</div>
+      </div>
+      <p><strong>Africa (40+):</strong></p>
+      <div class="currency-list">
+        <div class="currency-item">EGP</div><div class="currency-item">MAD</div><div class="currency-item">TND</div><div class="currency-item">LYD</div><div class="currency-item">DZD</div><div class="currency-item">SDG</div><div class="currency-item">SSP</div><div class="currency-item">NGN</div><div class="currency-item">GHS</div><div class="currency-item">XOF</div><div class="currency-item">XAF</div><div class="currency-item">GMD</div><div class="currency-item">GNF</div><div class="currency-item">LRD</div><div class="currency-item">SLL</div><div class="currency-item">SLE</div><div class="currency-item">CVE</div><div class="currency-item">STN</div><div class="currency-item">MRU</div><div class="currency-item">KES</div><div class="currency-item">ETB</div><div class="currency-item">UGX</div><div class="currency-item">TZS</div><div class="currency-item">RWF</div><div class="currency-item">BIF</div><div class="currency-item">DJF</div><div class="currency-item">ERN</div><div class="currency-item">SOS</div><div class="currency-item">KMF</div><div class="currency-item">SCR</div><div class="currency-item">MUR</div><div class="currency-item">MGA</div><div class="currency-item">ZAR</div><div class="currency-item">NAD</div><div class="currency-item">SZL</div><div class="currency-item">LSL</div><div class="currency-item">BWP</div><div class="currency-item">ZMW</div><div class="currency-item">MWK</div><div class="currency-item">MZN</div><div class="currency-item">AOA</div><div class="currency-item">CDF</div>
+      </div>
+      <p><strong>Oceania (9):</strong></p>
+      <div class="currency-list">
+        <div class="currency-item">AUD</div><div class="currency-item">NZD</div><div class="currency-item">FJD</div><div class="currency-item">PGK</div><div class="currency-item">SBD</div><div class="currency-item">TOP</div><div class="currency-item">VUV</div><div class="currency-item">WST</div><div class="currency-item">XPF</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ SHAPES ═══════════════════════ -->
+    <div class="section" id="shapes">
+      <div class="section-title">📐 Geometry — All 19 Shapes</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Shape</th><th>area(shape, ...)</th><th>perimeter</th><th>volume</th></tr>
+        <tr><td>circle</td><td><code>area(circle, r)</code></td><td><code>perimeter(circle, r)</code></td><td>—</td></tr>
+        <tr><td>square</td><td><code>area(square, s)</code></td><td><code>perimeter(square, s)</code></td><td>—</td></tr>
+        <tr><td>rectangle</td><td><code>area(rectangle, l, w)</code></td><td><code>perimeter(rectangle, l, w)</code></td><td>—</td></tr>
+        <tr><td>triangle</td><td><code>area(triangle, b, h)</code></td><td><code>perimeter(triangle, a, b, c)</code></td><td>—</td></tr>
+        <tr><td>trapezoid</td><td><code>area(trapezoid, a, b, h)</code></td><td><code>perimeter(trapezoid, a, b, c, d)</code></td><td>—</td></tr>
+        <tr><td>parallelogram</td><td><code>area(parallelogram, b, h)</code></td><td><code>perimeter(parallelogram, a, b)</code></td><td>—</td></tr>
+        <tr><td>rhombus</td><td><code>area(rhombus, d1, d2)</code></td><td><code>perimeter(rhombus, s)</code></td><td>—</td></tr>
+        <tr><td>ellipse</td><td><code>area(ellipse, a, b)</code></td><td>—</td><td>—</td></tr>
+        <tr><td>pentagon</td><td><code>area(pentagon, s)</code></td><td><code>perimeter(pentagon, s)</code></td><td>—</td></tr>
+        <tr><td>hexagon</td><td><code>area(hexagon, s)</code></td><td><code>perimeter(hexagon, s)</code></td><td>—</td></tr>
+        <tr><td>cube</td><td>—</td><td>—</td><td><code>volume(cube, s)</code></td></tr>
+        <tr><td>sphere</td><td>—</td><td>—</td><td><code>volume(sphere, r)</code></td></tr>
+        <tr><td>cylinder</td><td>—</td><td>—</td><td><code>volume(cylinder, r, h)</code></td></tr>
+        <tr><td>cone</td><td>—</td><td>—</td><td><code>volume(cone, r, h)</code></td></tr>
+        <tr><td>pyramid</td><td>—</td><td>—</td><td><code>volume(pyramid, l, w, h)</code></td></tr>
+        <tr><td>cuboid</td><td>—</td><td>—</td><td><code>volume(cuboid, l, w, h)</code></td></tr>
+        <tr><td>prism</td><td>—</td><td>—</td><td><code>volume(prism, a, h)</code></td></tr>
+        <tr><td>hemisphere</td><td>—</td><td>—</td><td><code>volume(hemisphere, r)</code></td></tr>
+        <tr><td>ellipsoid</td><td>—</td><td>—</td><td><code>volume(ellipsoid, a, b, c)</code></td></tr>
+      </table></div>
+      <div class="code-block">
+        <div class="code-header">📄 Examples</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">area</span>(circle, <span class="nm">5</span>))              <span class="cm"># 78.54</span>
+<span class="bi">display</span>(<span class="bi">area</span>(rectangle, <span class="nm">4</span>, <span class="nm">6</span>))       <span class="cm"># 24</span>
+<span class="bi">display</span>(<span class="bi">area</span>(triangle, <span class="nm">3</span>, <span class="nm">4</span>))        <span class="cm"># 6</span>
+<span class="bi">display</span>(<span class="bi">perimeter</span>(square, <span class="nm">5</span>))         <span class="cm"># 20</span>
+<span class="bi">display</span>(<span class="bi">volume</span>(sphere, <span class="nm">3</span>))           <span class="cm"># 113.10</span>
+<span class="bi">display</span>(<span class="bi">volume</span>(cylinder, <span class="nm">2</span>, <span class="nm">5</span>))      <span class="cm"># 62.83</span>
+<span class="bi">display</span>(<span class="bi">volume</span>(cube, <span class="nm">4</span>))             <span class="cm"># 64</span></code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ UTILITY ═══════════════════════ -->
+    <div class="section" id="utility">
+      <div class="section-title">🔐 Utility Functions</div>
+      <div class="code-block">
+        <div class="code-header">📄 hash, calc, sleep</div>
+        <div class="code-body"><code><span class="bi">display</span>(<span class="bi">hash</span>(<span class="st">"hello"</span>))      <span class="cm"># hex hash</span>
+
+<span class="bi">display</span>(<span class="bi">calc</span>(<span class="st">"+"</span>, <span class="nm">10</span>, <span class="nm">5</span>))   <span class="cm"># 15</span>
+<span class="bi">display</span>(<span class="bi">calc</span>(<span class="st">"*"</span>, <span class="nm">10</span>, <span class="nm">5</span>))   <span class="cm"># 50</span>
+
+<span class="bi">sleep</span>(<span class="nm">1000</span>)                <span class="cm"># wait 1 second</span>
+<span class="bi">display</span>(<span class="st">"After delay"</span>)
+
+<span class="kw">declare</span> img = <span class="bi">image</span>(<span class="st">"logo.png"</span>, <span class="nm">200</span>, <span class="nm">100</span>)
+<span class="bi">display</span>(img)</code></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ CONSTANTS ═══════════════════════ -->
+    <div class="section" id="constants">
+      <div class="section-title">🔬 All 38 Constants</div>
+      <h2 class="sub">Mathematical (9)</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Name</th><th>Value</th></tr>
+        <tr><td><code>pi</code></td><td>3.14159...</td></tr>
+        <tr><td><code>e</code></td><td>2.71828...</td></tr>
+        <tr><td><code>tau</code></td><td>6.28318...</td></tr>
+        <tr><td><code>phi</code></td><td>1.61803...</td></tr>
+        <tr><td><code>sqrt2</code></td><td>1.41421...</td></tr>
+        <tr><td><code>sqrt3</code></td><td>1.73205...</td></tr>
+        <tr><td><code>inf</code></td><td>Infinity</td></tr>
+        <tr><td><code>ninf</code></td><td>-Infinity</td></tr>
+        <tr><td><code>nan</code></td><td>NaN</td></tr>
+      </table></div>
+      <h2 class="sub">Logarithmic (4)</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><td><code>ln2</code></td><td>0.693...</td></tr>
+        <tr><td><code>ln10</code></td><td>2.302...</td></tr>
+        <tr><td><code>log2e</code></td><td>1.442...</td></tr>
+        <tr><td><code>log10e</code></td><td>0.434...</td></tr>
+      </table></div>
+      <h2 class="sub">Physical (5)</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><td><code>c</code></td><td>Speed of light (299,792,458 m/s)</td></tr>
+        <tr><td><code>g</code></td><td>Gravity (9.80665 m/s²)</td></tr>
+        <tr><td><code>avogadro</code></td><td>6.022e23</td></tr>
+        <tr><td><code>planck</code></td><td>6.626e-34</td></tr>
+        <tr><td><code>boltzmann</code></td><td>1.380e-23</td></tr>
+      </table></div>
+      <h2 class="sub">Astronomical (5)</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><td><code>earthmass</code></td><td>5.972e24 kg</td></tr>
+        <tr><td><code>sunmass</code></td><td>1.989e30 kg</td></tr>
+        <tr><td><code>au</code></td><td>Astronomical unit</td></tr>
+        <tr><td><code>lightyear</code></td><td>9.461e15 m</td></tr>
+        <tr><td><code>parsec</code></td><td>3.086e16 m</td></tr>
+      </table></div>
+      <h2 class="sub">Time (5)</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><td><code>yeardays</code></td><td>365.25</td></tr>
+        <tr><td><code>weekdays</code></td><td>7</td></tr>
+        <tr><td><code>hoursec</code></td><td>3600</td></tr>
+        <tr><td><code>daysec</code></td><td>86400</td></tr>
+        <tr><td><code>yearsec</code></td><td>31,557,600</td></tr>
+      </table></div>
+      <h2 class="sub">String (4)</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><td><code>newline</code></td><td>\n</td></tr>
+        <tr><td><code>tab</code></td><td>\t</td></tr>
+        <tr><td><code>space</code></td><td>" "</td></tr>
+        <tr><td><code>empty</code></td><td>""</td></tr>
+      </table></div>
+      <h2 class="sub">Language (3)</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><td><code>langname</code></td><td>"Littlestar"</td></tr>
+        <tr><td><code>version</code></td><td>"2.0"</td></tr>
+        <tr><td><code>author</code></td><td>"Godspower Kenneth U."</td></tr>
+      </table></div>
+      <p><strong>Plus 10 Set Symbol Constants</strong> (see <a href="#set-symbols" style="color:var(--gold)">Set Symbols</a>)</p>
+    </div>
+
+    <!-- ═══════════════════════ MODES ═══════════════════════ -->
+    <div class="section" id="modes">
+      <div class="section-title">⚙️ Debug & Creator Modes</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Command</th><th>What It Does</th></tr>
+        <tr><td><code>enable debug</code></td><td>Shows 🐛 debug info per line</td></tr>
+        <tr><td><code>enable creator</code></td><td>Unlocks <ic>exportfile</ic></td></tr>
+        <tr><td><code>disable debug</code></td><td>Turn off debug</td></tr>
+        <tr><td><code>disable creator</code></td><td>Turn off creator mode</td></tr>
+      </table></div>
+    </div>
+
+    <!-- ═══════════════════════ ERRORS ═══════════════════════ -->
+    <div class="section" id="errors">
+      <div class="section-title">❌ All Errors — With Fixes</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Error Message</th><th>How to Fix</th></tr>
+        <tr><td>Missing 'module littlestar:'</td><td>Add <ic>module littlestar:</ic> as line 1</td></tr>
+        <tr><td>Missing 'spark print:'</td><td>Add <ic>spark print:</ic> block with your mains</td></tr>
+        <tr><td>main() needs a number</td><td>Use <ic>spark main(1):</ic> not <ic>spark main():</ic></td></tr>
+        <tr><td>main(N) is missing</td><td>Numbers must be 1, 2, 3… no gaps</td></tr>
+        <tr><td>main(N) called twice</td><td>Each main can only be called once in spark print</td></tr>
+        <tr><td>main(N) doesn't exist</td><td>Define <ic>spark main(N):</ic> first</td></tr>
+        <tr><td>main(N) exists but never called</td><td>Add <ic>main(N)</ic> to spark print</td></tr>
+        <tr><td>Variable already declared</td><td>Use <ic>set</ic> instead of <ic>declare</ic></td></tr>
+        <tr><td>Variable was never declared</td><td>Add <ic>declare x = ...</ic> before using</td></tr>
+        <tr><td>Variable is FIXED</td><td>Constants cannot change — use different name</td></tr>
+        <tr><td>Variable doesn't exist</td><td>Check spelling; declare it first</td></tr>
+        <tr><td>Loop ran too many times</td><td>Loop over 10,000 iterations — fix condition</td></tr>
+        <tr><td>Infinite loop detected</td><td>Move variable update BEFORE <ic>skip</ic></td></tr>
+        <tr><td>Unknown shape</td><td>Check spelling — see shape list</td></tr>
+        <tr><td>Assertion failed</td><td>The condition in <ic>assert()</ic> was false</td></tr>
+        <tr><td>Couldn't evaluate</td><td>Check math/logic syntax</td></tr>
+        <tr><td>Variable not defined</td><td>Declare the variable first</td></tr>
+        <tr><td>web: must be complete HTML5</td><td>Add <ic>&lt;!DOCTYPE html&gt;</ic> at top</td></tr>
+        <tr><td>File not found</td><td>Check filename spelling</td></tr>
+        <tr><td>HTTP failed</td><td>Check URL and internet</td></tr>
+        <tr><td>exportfile needs creator mode</td><td>Add <ic>enable creator</ic> at top</td></tr>
+      </table></div>
+    </div>
+
+    <!-- ═══════════════════════ RECIPES ═══════════════════════ -->
+    <div class="section" id="recipes">
+      <div class="section-title">📖 Common Recipes — 15 Copy-Paste Solutions</div>
+
+      <div class="recipe">
+        <div class="recipe-title">🔢 Recipe 1: Check if a number is even or odd</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> n = <span class="nm">7</span>
+<span class="kw">when</span> <span class="bi">isEven</span>(n):
+    <span class="bi">display</span>(<span class="st">"{n} is even"</span>)
+<span class="kw">otherwise</span>:
+    <span class="bi">display</span>(<span class="st">"{n} is odd"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">🔤 Recipe 2: Reverse a word</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> word = <span class="bi">input</span>(<span class="st">"Type a word:"</span>)
+<span class="bi">display</span>(<span class="st">"Reversed: {reverse(word)}"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">🔍 Recipe 3: Check if word is a palindrome</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> word = <span class="st">"racecar"</span>
+<span class="kw">when</span> word == <span class="bi">reverse</span>(word):
+    <span class="bi">display</span>(<span class="st">"Palindrome!"</span>)
+<span class="kw">otherwise</span>:
+    <span class="bi">display</span>(<span class="st">"Not a palindrome"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">💰 Recipe 4: Calculate tip</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> bill = <span class="nm">85.50</span>
+<span class="kw">declare</span> tip = <span class="bi">decimals</span>(bill * <span class="nm">0.18</span>, <span class="nm">2</span>)
+<span class="kw">declare</span> total = <span class="bi">decimals</span>(bill + tip, <span class="nm">2</span>)
+<span class="bi">display</span>(<span class="st">"Bill: ${bill}, Tip: ${tip}, Total: ${total}"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">🎲 Recipe 5: Random dice roll</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> dice = <span class="bi">randInt</span>(<span class="nm">1</span>, <span class="nm">6</span>)
+<span class="bi">display</span>(<span class="st">"🎲 You rolled: {dice}"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">🌡️ Recipe 6: Temperature converter</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> c = <span class="bi">readNum</span>(<span class="st">"Celsius:"</span>)
+<span class="kw">declare</span> f = <span class="bi">decimals</span>(c * <span class="nm">9</span>/<span class="nm">5</span> + <span class="nm">32</span>, <span class="nm">1</span>)
+<span class="bi">display</span>(<span class="st">"{c}°C = {f}°F"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">📏 Recipe 7: BMI calculator</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> weight = <span class="nm">70</span>
+<span class="kw">declare</span> height = <span class="nm">1.75</span>
+<span class="kw">declare</span> bmi = <span class="bi">decimals</span>(weight / (height * height), <span class="nm">2</span>)
+<span class="bi">display</span>(<span class="st">"BMI: {bmi}"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">🔐 Recipe 8: Password strength check</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> pwd = <span class="bi">readPassword</span>(<span class="st">"Password:"</span>)
+<span class="kw">when</span> <span class="bi">len</span>(pwd) >= <span class="nm">8</span> <span class="kw">and</span> (<span class="bi">includes</span>(pwd, <span class="st">"@"</span>) <span class="kw">or</span> <span class="bi">includes</span>(pwd, <span class="st">"!"</span>)):
+    <span class="bi">display</span>(<span class="st">"✅ Strong"</span>)
+<span class="kw">otherwise</span>:
+    <span class="bi">display</span>(<span class="st">"❌ Weak"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">📊 Recipe 9: Find largest number in array</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">letarr</span> nums = <span class="nm">3</span>, <span class="nm">7</span>, <span class="nm">2</span>, <span class="nm">9</span>, <span class="nm">5</span>
+<span class="bi">display</span>(<span class="st">"Max: {max(nums)}"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">🔠 Recipe 10: Count vowels in a word</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> word = <span class="st">"hello"</span>
+<span class="kw">declare</span> count = <span class="nm">0</span>
+<span class="kw">letarr</span> vowels = <span class="st">"a"</span>, <span class="st">"e"</span>, <span class="st">"i"</span>, <span class="st">"o"</span>, <span class="st">"u"</span>
+<span class="kw">as</span> i <span class="kw">in</span> <span class="nm">0</span> <span class="kw">till</span> <span class="bi">len</span>(word) - <span class="nm">1</span>:
+    <span class="kw">when</span> vowels <span class="kw">contains</span> <span class="bi">lower</span>(<span class="bi">charAt</span>(word, i)):
+        <span class="kw">set</span> count = count + <span class="nm">1</span>
+<span class="bi">display</span>(<span class="st">"Vowels: {count}"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">🎯 Recipe 11: FizzBuzz</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">as</span> i <span class="kw">in</span> <span class="nm">1</span> <span class="kw">till</span> <span class="nm">15</span>:
+    <span class="kw">when</span> i <span class="bi">mod</span> <span class="nm">15</span> == <span class="nm">0</span>: <span class="bi">display</span>(<span class="st">"FizzBuzz"</span>)
+    <span class="kw">elif</span> i <span class="bi">mod</span> <span class="nm">3</span> == <span class="nm">0</span>: <span class="bi">display</span>(<span class="st">"Fizz"</span>)
+    <span class="kw">elif</span> i <span class="bi">mod</span> <span class="nm">5</span> == <span class="nm">0</span>: <span class="bi">display</span>(<span class="st">"Buzz"</span>)
+    <span class="kw">otherwise</span>: <span class="bi">display</span>(i)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">🌐 Recipe 12: Get user data from API</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> data = <span class="bi">httpGet</span>(<span class="st">"https://api.github.com/users/octocat"</span>)
+<span class="kw">declare</span> user = <span class="bi">jsonParse</span>(data)
+<span class="bi">display</span>(<span class="st">"Name: {user["name"]}"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">💱 Recipe 13: Live currency converter</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> amount = <span class="bi">readNum</span>(<span class="st">"USD amount:"</span>)
+<span class="bi">display</span>(<span class="st">"= {decimals(convertCurrency(amount, USD, EUR), 2)} EUR"</span>)
+<span class="bi">display</span>(<span class="st">"= {decimals(convertCurrency(amount, USD, JPY), 2)} JPY"</span>)</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">🔣 Recipe 14: Solve equation from input</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> eq = <span class="bi">input</span>(<span class="st">"Enter equation (e.g., 2x + 5 = 15):"</span>)
+<span class="bi">display</span>(<span class="bi">solve</span>(eq))</code></div></div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-title">⏱️ Recipe 15: Time your code</div>
+        <div class="code-block"><div class="code-body"><code><span class="kw">declare</span> start = <span class="bi">timestamp</span>()
+<span class="kw">as</span> i <span class="kw">in</span> <span class="nm">1</span> <span class="kw">till</span> <span class="nm">100000</span>:
+    <span class="cm"># do work</span>
+<span class="bi">display</span>(<span class="st">"Took: {elapsed(start)} ms"</span>)</code></div></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ MIGRATION ═══════════════════════ -->
+    <div class="section" id="migration">
+      <div class="section-title">🔄 Migration Guide (from Python/JS)</div>
+      <p class="section-subtitle">Coming from another language? Here's how it maps to Littlestar.</p>
+
+      <h2 class="sub">Python → Littlestar</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Python</th><th>Littlestar</th></tr>
+        <tr><td><code>x = 5</code></td><td><code>declare x = 5</code></td></tr>
+        <tr><td><code>x = 10</code> (change)</td><td><code>set x = 10</code></td></tr>
+        <tr><td><code>PI = 3.14</code></td><td><code>fix PI = 3.14</code></td></tr>
+        <tr><td><code>del x</code></td><td><code>del x</code></td></tr>
+        <tr><td><code>print("hi")</code></td><td><code>display("hi")</code></td></tr>
+        <tr><td><code>if x &gt; 5:</code></td><td><code>when x &gt; 5:</code></td></tr>
+        <tr><td><code>elif x &gt; 3:</code></td><td><code>elif x &gt; 3:</code></td></tr>
+        <tr><td><code>else:</code></td><td><code>otherwise:</code></td></tr>
+        <tr><td><code>for i in range(10):</code></td><td><code>as i in 0 till 9:</code></td></tr>
+        <tr><td><code>while x &lt; 10:</code></td><td><code>while x &lt; 10:</code></td></tr>
+        <tr><td><code>break</code></td><td><code>stop</code></td></tr>
+        <tr><td><code>continue</code></td><td><code>skip</code></td></tr>
+        <tr><td><code>def add(a, b):</code></td><td><code>func add(a, b):</code></td></tr>
+        <tr><td><code>return x</code></td><td><code>return x</code></td></tr>
+        <tr><td><code>True/False</code></td><td><code>yes/no</code></td></tr>
+        <tr><td><code>and, or, not</code></td><td><code>and, or, not</code></td></tr>
+        <tr><td><code>nums = [1, 2, 3]</code></td><td><code>letarr nums = 1, 2, 3</code></td></tr>
+        <tr><td><code>len(x)</code></td><td><code>len(x)</code></td></tr>
+        <tr><td><code>try:</code> / <code>except:</code></td><td><code>compile:</code> / <code>otherwise:</code></td></tr>
+        <tr><td><code>input()</code></td><td><code>input("prompt")</code></td></tr>
+      </table></div>
+
+      <h2 class="sub">JavaScript → Littlestar</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>JavaScript</th><th>Littlestar</th></tr>
+        <tr><td><code>let x = 5</code></td><td><code>declare x = 5</code></td></tr>
+        <tr><td><code>const PI = 3.14</code></td><td><code>fix PI = 3.14</code></td></tr>
+        <tr><td><code>console.log(x)</code></td><td><code>display(x)</code></td></tr>
+        <tr><td><code>if (x &gt; 5) {}</code></td><td><code>when x &gt; 5:</code></td></tr>
+        <tr><td><code>} else {</code></td><td><code>otherwise:</code></td></tr>
+        <tr><td><code>for (let i=0; i&lt;10; i++)</code></td><td><code>as i in 0 till 9:</code></td></tr>
+        <tr><td><code>function add(a,b) {}</code></td><td><code>func add(a, b):</code></td></tr>
+        <tr><td><code>&&, ||, !</code></td><td><code>and, or, not</code></td></tr>
+        <tr><td><code>true/false</code></td><td><code>yes/no</code></td></tr>
+        <tr><td><code>[1,2,3]</code></td><td><code>letarr nums = 1, 2, 3</code></td></tr>
+        <tr><td><code>arr.length</code></td><td><code>len(arr)</code></td></tr>
+        <tr><td><code>try {} catch {}</code></td><td><code>compile:</code> / <code>otherwise:</code></td></tr>
+      </table></div>
+    </div>
+
+    <!-- ═══════════════════════ STYLE GUIDE ═══════════════════════ -->
+    <div class="section" id="style">
+      <div class="section-title">🎨 Style Guide — Best Practices</div>
+
+      <h2 class="sub">Naming</h2>
+      <ul>
+        <li>✅ Use <strong>camelCase</strong> for variables: <ic>firstName</ic>, <ic>totalPrice</ic></li>
+        <li>✅ Use <strong>UPPER_CASE</strong> for constants: <ic>MAX_USERS</ic>, <ic>PI</ic></li>
+        <li>✅ Use <strong>descriptive</strong> names: <ic>userAge</ic> not <ic>a</ic></li>
+        <li>✅ Function names should be <strong>verbs</strong>: <ic>calculateTax()</ic>, <ic>saveUser()</ic></li>
+      </ul>
+
+      <h2 class="sub">Formatting</h2>
+      <ul>
+        <li>✅ Always use <strong>4 spaces</strong> for indentation</li>
+        <li>✅ Add <strong>spaces around operators</strong>: <ic>x = 5</ic> not <ic>x=5</ic></li>
+        <li>✅ Add <strong>blank lines</strong> between logical sections</li>
+        <li>✅ Keep lines under <strong>80 characters</strong> when possible</li>
+      </ul>
+
+      <h2 class="sub">Comments</h2>
+      <ul>
+        <li>✅ Comment <strong>why</strong>, not <strong>what</strong> the code does</li>
+        <li>✅ Use <ic>!! !!</ic> for section headers</li>
+        <li>✅ Use <ic>#</ic> for brief inline notes</li>
+      </ul>
+
+      <h2 class="sub">Code Organization</h2>
+      <ul>
+        <li>✅ Group related code in <strong>separate main blocks</strong></li>
+        <li>✅ Extract repeated code into <strong>functions</strong></li>
+        <li>✅ Use <strong>meaningful main block numbers</strong> (main(1) = setup, main(2) = logic, main(3) = output)</li>
+      </ul>
+
+      <h2 class="sub">Good vs Bad Examples</h2>
+      <div class="compare">
+        <div class="compare-box">
+          <div class="compare-label bad">❌ Bad</div>
+          <div class="compare-code"><span class="kw">declare</span> a=<span class="nm">5</span>
+<span class="kw">declare</span> b=<span class="nm">10</span>
+<span class="kw">declare</span> c=a*b
+<span class="bi">display</span>(c)</div>
+        </div>
+        <div class="compare-box">
+          <div class="compare-label good">✅ Good</div>
+          <div class="compare-code"><span class="cm"># Calculate rectangle area</span>
+<span class="kw">declare</span> width  = <span class="nm">5</span>
+<span class="kw">declare</span> height = <span class="nm">10</span>
+<span class="kw">declare</span> area   = width * height
+<span class="bi">display</span>(<span class="st">"Area: {area}"</span>)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ FAQ ═══════════════════════ -->
+    <div class="section" id="faq">
+      <div class="section-title">❓ Frequently Asked Questions</div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Do I need to install anything?</div>
+        <div class="faq-a">No! Just open the Playground HTML file in any modern browser. Works offline too.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Is Littlestar free?</div>
+        <div class="faq-a">Yes, completely free and open source. Made by Godspower Kenneth U.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Can I use Littlestar for real projects?</div>
+        <div class="faq-a">Littlestar is great for learning, scripting, prototyping, and small tools. For large production apps, consider mainstream languages.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Why does my code say "Variable already declared"?</div>
+        <div class="faq-a">You used <ic>declare</ic> twice on the same variable. Use <ic>set</ic> to change an existing variable.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Why is my loop running forever?</div>
+        <div class="faq-a">You forgot to update the loop variable. Add <ic>set i = i + 1</ic> inside the loop. Littlestar auto-stops at 10,000 rounds.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: What's the difference between letarr and letset?</div>
+        <div class="faq-a"><ic>letarr</ic> keeps duplicates. <ic>letset</ic> removes duplicates automatically.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Why does my file get lost?</div>
+        <div class="faq-a">It shouldn't! Littlestar auto-saves to browser storage. If you clear browser data, files are lost. Use 📥 Save to download important files.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Can I share Littlestar files?</div>
+        <div class="faq-a">Yes! Download .lstar files and share them. Others can open them in their Playground.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Why can't I use dot notation on objects?</div>
+        <div class="faq-a">Littlestar only supports bracket notation: <ic>person["name"]</ic> — not <ic>person.name</ic>.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: How do I access array items?</div>
+        <div class="faq-a">Use bracket notation with 0-based index: <ic>arr[0]</ic> is the first item.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: What browsers work with Littlestar?</div>
+        <div class="faq-a">Chrome, Firefox, Safari, Edge — any modern browser. Even works on phone browsers.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Can I compile Littlestar to standalone apps?</div>
+        <div class="faq-a">Not yet — Littlestar runs in the browser. But you can distribute the Playground HTML file as an "app."</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ KEYWORDS ═══════════════════════ -->
+    <div class="section" id="keywords">
+      <div class="section-title">📖 All 39 Keywords</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Keyword</th><th>Category</th><th>Purpose</th></tr>
+        <tr><td><code>module</code></td><td>Structure</td><td>File header</td></tr>
+        <tr><td><code>spark</code></td><td>Structure</td><td>Marks main/print blocks</td></tr>
+        <tr><td><code>main</code></td><td>Structure</td><td>Execution block</td></tr>
+        <tr><td><code>print</code></td><td>Structure</td><td>Order block</td></tr>
+        <tr><td><code>declare</code></td><td>Variables</td><td>Create variable</td></tr>
+        <tr><td><code>make</code></td><td>Variables</td><td>Alias for declare</td></tr>
+        <tr><td><code>set</code></td><td>Variables</td><td>Update variable</td></tr>
+        <tr><td><code>fix</code></td><td>Variables</td><td>Create constant</td></tr>
+        <tr><td><code>del</code></td><td>Variables</td><td>Delete variable</td></tr>
+        <tr><td><code>swap</code></td><td>Variables</td><td>Swap two variables</td></tr>
+        <tr><td><code>letarr</code></td><td>Data</td><td>Create array</td></tr>
+        <tr><td><code>letset</code></td><td>Data</td><td>Create set</td></tr>
+        <tr><td><code>letobj</code></td><td>Data</td><td>Create object</td></tr>
+        <tr><td><code>when</code></td><td>Logic</td><td>If statement</td></tr>
+        <tr><td><code>elif</code></td><td>Logic</td><td>Else-if</td></tr>
+        <tr><td><code>otherwise</code></td><td>Logic</td><td>Else</td></tr>
+        <tr><td><code>while</code></td><td>Loops</td><td>While loop</td></tr>
+        <tr><td><code>as</code></td><td>Loops</td><td>For loop start</td></tr>
+        <tr><td><code>in</code></td><td>Loops</td><td>For loop range</td></tr>
+        <tr><td><code>till</code></td><td>Loops</td><td>For loop end</td></tr>
+        <tr><td><code>repeat</code></td><td>Loops</td><td>Repeat block</td></tr>
+        <tr><td><code>this</code></td><td>Loops</td><td>Used with repeat</td></tr>
+        <tr><td><code>match</code></td><td>Switch</td><td>Match statement</td></tr>
+        <tr><td><code>case</code></td><td>Switch</td><td>Case branch</td></tr>
+        <tr><td><code>default</code></td><td>Switch</td><td>Default case</td></tr>
+        <tr><td><code>func</code></td><td>Functions</td><td>Define function</td></tr>
+        <tr><td><code>private</code></td><td>Functions</td><td>Private modifier</td></tr>
+        <tr><td><code>export</code></td><td>Functions</td><td>Exportable modifier</td></tr>
+        <tr><td><code>lion</code></td><td>Functions</td><td>Named block</td></tr>
+        <tr><td><code>import</code></td><td>Modules</td><td>Import function</td></tr>
+        <tr><td><code>from</code></td><td>Modules</td><td>Source file</td></tr>
+        <tr><td><code>compile</code></td><td>Errors</td><td>Try block</td></tr>
+        <tr><td><code>web</code></td><td>Output</td><td>HTML block</td></tr>
+        <tr><td><code>and</code></td><td>Logic</td><td>Boolean AND</td></tr>
+        <tr><td><code>or</code></td><td>Logic</td><td>Boolean OR</td></tr>
+        <tr><td><code>not</code></td><td>Logic</td><td>Boolean NOT</td></tr>
+        <tr><td><code>contains</code></td><td>Logic</td><td>Membership</td></tr>
+        <tr><td><code>enable</code></td><td>Modes</td><td>Enable mode</td></tr>
+        <tr><td><code>disable</code></td><td>Modes</td><td>Disable mode</td></tr>
+      </table></div>
+    </div>
+
+    <!-- ═══════════════════════ ALL FUNCTIONS ═══════════════════════ -->
+    <div class="section" id="all-fns">
+      <div class="section-title">📚 All 150+ Functions Alphabetical</div>
+      <p>Every function in Littlestar, alphabetically:</p>
+      <p style="font-size:12px;line-height:2">
+        <ic>abs</ic> <ic>acos</ic> <ic>add</ic> <ic>addFirst</ic> <ic>alert</ic> <ic>antilog</ic> <ic>append</ic> <ic>approximate</ic> <ic>area</ic> <ic>asin</ic> <ic>assert</ic> <ic>atan</ic> <ic>avg</ic> <ic>bin</ic> <ic>calc</ic> <ic>capitalize</ic> <ic>cbrt</ic> <ic>ceil</ic> <ic>charAt</ic> <ic>chunk</ic> <ic>clamp</ic> <ic>clear</ic> <ic>comma</ic> <ic>concat</ic> <ic>confirm</ic> <ic>contains</ic> <ic>convert</ic> <ic>convertCurrency</ic> <ic>cos</ic> <ic>cosh</ic> <ic>count</ic> <ic>countdb</ic> <ic>cube</ic> <ic>datenow</ic> <ic>daynow</ic> <ic>days</ic> <ic>decimals</ic> <ic>degrad</ic> <ic>degtorad</ic> <ic>degToRad</ic> <ic>display</ic> <ic>distance</ic> <ic>dsort</ic> <ic>elapsed</ic> <ic>endsWith</ic> <ic>evens</ic> <ic>evensBetween</ic> <ic>exists</ic> <ic>exp</ic> <ic>faccube</ic> <ic>facdifference</ic> <ic>facsq</ic> <ic>facsum</ic> <ic>factorial</ic> <ic>fetch</ic> <ic>fibonacci</ic> <ic>filter</ic> <ic>first</ic> <ic>flatten</ic> <ic>floor</ic> <ic>format</ic> <ic>fraction</ic> <ic>gcd</ic> <ic>glow</ic> <ic>gradcos</ic> <ic>gradsin</ic> <ic>gradtan</ic> <ic>hasdb</ic> <ic>hash</ic> <ic>hcf</ic> <ic>hex</ic> <ic>hournow</ic> <ic>httpDelete</ic> <ic>httpGet</ic> <ic>httpPost</ic> <ic>httpPut</ic> <ic>image</ic> <ic>includes</ic> <ic>indexOf</ic> <ic>input</ic> <ic>insertAt</ic> <ic>isArr</ic> <ic>isBool</ic> <ic>isDecimal</ic> <ic>isEven</ic> <ic>isInteger</ic> <ic>isMember</ic> <ic>isNegative</ic> <ic>isNum</ic> <ic>isObj</ic> <ic>isOdd</ic> <ic>isPositive</ic> <ic>isPrime</ic> <ic>isStr</ic> <ic>isWhole</ic> <ic>isZero</ic> <ic>join</ic> <ic>jsonParse</ic> <ic>jsonStringify</ic> <ic>last</ic> <ic>lcm</ic> <ic>len</ic> <ic>listdbs</ic> <ic>ln</ic> <ic>log</ic> <ic>log10</ic> <ic>log2</ic> <ic>logbase</ic> <ic>logcos</ic> <ic>logsin</ic> <ic>logtan</ic> <ic>lower</ic> <ic>map</ic> <ic>math</ic> <ic>mathset</ic> <ic>max</ic> <ic>median</ic> <ic>message</ic> <ic>min</ic> <ic>minutenow</ic> <ic>mod</ic> <ic>mode</ic> <ic>monthnow</ic> <ic>months</ic> <ic>nthroot</ic> <ic>oct</ic> <ic>odds</ic> <ic>oddsBetween</ic> <ic>padLeft</ic> <ic>padRight</ic> <ic>percent</ic> <ic>perimeter</ic> <ic>pick</ic> <ic>pop</ic> <ic>pow</ic> <ic>primes</ic> <ic>quadratic</ic> <ic>radcos</ic> <ic>raddeg</ic> <ic>radsin</ic> <ic>radtan</ic> <ic>radtodeg</ic> <ic>radToDeg</ic> <ic>random</ic> <ic>randomChoice</ic> <ic>randomChoose</ic> <ic>randInt</ic> <ic>randText</ic> <ic>range</ic> <ic>read</ic> <ic>readNum</ic> <ic>readPassword</ic> <ic>remove</ic> <ic>removeAt</ic> <ic>removeFirst</ic> <ic>removeItem</ic> <ic>repeat</ic> <ic>replace</ic> <ic>reverse</ic> <ic>round</ic> <ic>search</ic> <ic>secondnow</ic> <ic>sentence</ic> <ic>shine</ic> <ic>sign</ic> <ic>simultaneousLinear</ic> <ic>sin</ic> <ic>sinh</ic> <ic>sleep</ic> <ic>slice</ic> <ic>solve</ic> <ic>sort</ic> <ic>split</ic> <ic>sqrt</ic> <ic>square</ic> <ic>startsWith</ic> <ic>stddev</ic> <ic>sum</ic> <ic>swap</ic> <ic>tan</ic> <ic>tanh</ic> <ic>timenow</ic> <ic>timestamp</ic> <ic>toInt</ic> <ic>toNum</ic> <ic>toStr</ic> <ic>toggle</ic> <ic>trim</ic> <ic>type</ic> <ic>unique</ic> <ic>upper</ic> <ic>variance</ic> <ic>volume</ic> <ic>weekdayNow</ic> <ic>wordCount</ic> <ic>write</ic> <ic>yearnow</ic> <ic>zip</ic>
+      </p>
+    </div>
+
+    <!-- ═══════════════════════ EXAMPLES LIST ═══════════════════════ -->
+    <div class="section" id="examples-list">
+      <div class="section-title">✨ All 60+ Built-in Examples</div>
+      <p>The Playground dropdown includes these examples organized by category:</p>
+      <h4 class="sub">🚀 Beginner</h4>
+      <ul><li>Hello World</li><li>String Concatenation</li><li>Comments</li></ul>
+      <h4 class="sub">📚 Data & Variables</h4>
+      <ul><li>Arrays</li><li>Delete</li><li>Strings</li><li>Contains</li></ul>
+      <h4 class="sub">🔁 Control Flow</h4>
+      <ul><li>Loops</li><li>Advanced (skip/stop)</li></ul>
+      <h4 class="sub">🔧 Functions</h4>
+      <ul><li>Private Functions</li><li>Imports</li></ul>
+      <h4 class="sub">🧮 Math (15 examples)</h4>
+      <ul><li>Calculator</li><li>Math Functions</li><li>Scientific Calc</li><li>Rounding</li><li>Even & Odd</li><li>evensBetween/oddsBetween</li><li>Prime Checker</li><li>Factorial Table</li><li>Fibonacci</li><li>Number Systems</li><li>Statistics</li><li>Comma Formatter</li><li>isWhole Checker</li><li>Number Checkers</li></ul>
+      <h4 class="sub">🔢 Equations & Sets</h4>
+      <ul><li>Equation Solver</li><li>Math Sets</li></ul>
+      <h4 class="sub">🔁 New Loops</h4>
+      <ul><li>For Loop (as/till)</li><li>Repeat N Times</li></ul>
+      <h4 class="sub">🌍 Real World (12 examples)</h4>
+      <ul><li>BMI Calculator</li><li>Grade Calculator</li><li>Temperature</li><li>Age Calculator</li><li>Tip Calculator</li><li>Password Checker</li><li>Word Counter</li><li>Palindrome</li><li>Shopping Cart</li><li>Bank Account</li><li>Todo List</li><li>Input Types</li></ul>
+      <h4 class="sub">🎮 Games & Fun (8 examples)</h4>
+      <ul><li>FizzBuzz</li><li>Countdown</li><li>Number Guess</li><li>Rock Paper Scissors</li><li>Quiz</li><li>Star Pattern</li><li>Multiplication</li><li>Random Generator</li></ul>
+      <h4 class="sub">🌐 Web Design</h4>
+      <ul><li>Web Basics</li><li>Profile Card</li><li>Full HTML5 Page</li></ul>
+      <h4 class="sub">🌍 Conversions</h4>
+      <ul><li>Currency (Live!)</li><li>Units</li><li>Geometry</li><li>World Currencies</li></ul>
+      <h4 class="sub">⚙️ System</h4>
+      <ul><li>Files</li><li>Date & Time</li><li>Shapes</li><li>Meta</li><li>Toggle Case</li><li>Full Demo</li></ul>
+    </div>
+
+    <!-- ═══════════════════════ STATS ═══════════════════════ -->
+    <div class="section" id="stats-summary">
+      <div class="section-title">📊 Littlestar by the Numbers</div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-num">39</div><div class="stat-lbl">Keywords</div></div>
+        <div class="stat-card"><div class="stat-num">40</div><div class="stat-lbl">Math Functions</div></div>
+        <div class="stat-card"><div class="stat-num">21</div><div class="stat-lbl">Trig Functions</div></div>
+        <div class="stat-card"><div class="stat-num">7</div><div class="stat-lbl">Log Functions</div></div>
+        <div class="stat-card"><div class="stat-num">7</div><div class="stat-lbl">Stat Functions</div></div>
+        <div class="stat-card"><div class="stat-num">20</div><div class="stat-lbl">String Functions</div></div>
+        <div class="stat-card"><div class="stat-num">27</div><div class="stat-lbl">Array Functions</div></div>
+        <div class="stat-card"><div class="stat-num">6</div><div class="stat-lbl">Type Checks</div></div>
+        <div class="stat-card"><div class="stat-num">7</div><div class="stat-lbl">Number Checks</div></div>
+        <div class="stat-card"><div class="stat-num">14</div><div class="stat-lbl">Date/Time</div></div>
+        <div class="stat-card"><div class="stat-num">17</div><div class="stat-lbl">Set Ops</div></div>
+        <div class="stat-card"><div class="stat-num">38</div><div class="stat-lbl">Constants</div></div>
+        <div class="stat-card"><div class="stat-num">150+</div><div class="stat-lbl">Currencies</div></div>
+        <div class="stat-card"><div class="stat-num">35+</div><div class="stat-lbl">Units</div></div>
+        <div class="stat-card"><div class="stat-num">19</div><div class="stat-lbl">Shapes</div></div>
+        <div class="stat-card"><div class="stat-num">60+</div><div class="stat-lbl">Examples</div></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ TIPS ═══════════════════════ -->
+    <div class="section" id="tips">
+      <div class="section-title">💡 Tips & Tricks</div>
+      <div class="card-grid">
+        <div class="card"><div class="card-icon">⌨️</div><div class="card-title">Ctrl+Enter</div><div class="card-desc">Run code instantly.</div></div>
+        <div class="card"><div class="card-icon">📐</div><div class="card-title">Tab = 4 spaces</div><div class="card-desc">Correct indentation automatically.</div></div>
+        <div class="card"><div class="card-icon">🔤</div><div class="card-title">Interpolation</div><div class="card-desc"><ic>"Hi {name}!"</ic> is cleaner than concat.</div></div>
+        <div class="card"><div class="card-icon">🔁</div><div class="card-title">For loops</div><div class="card-desc"><ic>as i in 1 till 10:</ic> — no counter needed.</div></div>
+        <div class="card"><div class="card-icon">🧮</div><div class="card-title">Sets vs Arrays</div><div class="card-desc">Sets = unique. Arrays = duplicates OK.</div></div>
+        <div class="card"><div class="card-icon">🔣</div><div class="card-title">Solve equations</div><div class="card-desc">One line: <ic>solve("2x+5=15")</ic></div></div>
+        <div class="card"><div class="card-icon">📋</div><div class="card-title">Load examples</div><div class="card-desc">60+ in dropdown — study them!</div></div>
+        <div class="card"><div class="card-icon">🔍</div><div class="card-title">Read hints</div><div class="card-desc">Every error has 💡 hint.</div></div>
+        <div class="card"><div class="card-icon">🐛</div><div class="card-title">Debug mode</div><div class="card-desc"><ic>enable debug</ic> — see everything.</div></div>
+        <div class="card"><div class="card-icon">🌐</div><div class="card-title">Web tab</div><div class="card-desc">Click Web to see HTML output.</div></div>
+        <div class="card"><div class="card-icon">📦</div><div class="card-title">Multi-file</div><div class="card-desc">Other tabs auto-registered for import.</div></div>
+        <div class="card"><div class="card-icon">💾</div><div class="card-title">Auto-save</div><div class="card-desc">Code saves to browser automatically.</div></div>
+      </div>
+      <div class="callout callout-tip">
+        <div class="callout-icon">🌟</div>
+        <div class="callout-body">
+          <strong>You made it to the end!</strong>
+          <p>You now know everything about Littlestar. Time to build something amazing! 🚀</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;padding:30px;border-top:1px solid rgba(250,204,21,.15)">
+        <p style="font-size:20px;font-weight:800;color:var(--gold);margin-bottom:6px">🌟 Littlestar v2.0</p>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:4px">The Complete Definitive Guide</p>
+        <p style="color:var(--muted);font-size:12px">Made with ❤️ by Godspower Kenneth U.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<script>
+  function toggleSidebar(){
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebar-overlay').classList.toggle('show');
+  }
+  function closeSidebar(){
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebar-overlay').classList.remove('show');
+  }
+  document.querySelectorAll('#sidebar nav a').forEach(a=>{
+    a.addEventListener('click',()=>{ if(window.innerWidth<=800) closeSidebar(); });
+  });
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('#sidebar nav a');
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navLinks.forEach(a=>{ a.classList.toggle('active', a.getAttribute('href')==='#'+id); });
+      }
+    });
+  },{rootMargin:'-15% 0px -75% 0px'});
+  sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>

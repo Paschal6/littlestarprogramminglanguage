@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#facc15">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Littlestar">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+
+      <!-- Register Service Worker -->
+      <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('service-worker.js')
+              .then(reg => console.log('🌟 Littlestar PWA ready!'))
+              .catch(err => console.log('SW failed:', err));
+          });
+        }
+      </script>
+<link rel="icon" href="favicon.png" type="image/x-icon">
+<title>Littlestar Studio 🌟 - Learn Programming the Fun Way</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a15;
+    color: #f0f0f5;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Animated star background */
+.stars-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: radial-gradient(ellipse at bottom, #16213e 0%, #0a0a15 100%);
+}
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(1px 1px at 33% 80%, white, transparent),
+        radial-gradient(1px 1px at 15% 90%, white, transparent),
+        radial-gradient(2px 2px at 45% 15%, #F5A623, transparent),
+        radial-gradient(1px 1px at 70% 40%, #F5A623, transparent);
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    animation: twinkle 5s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #F5A623;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #F5A623, 0 0 20px #F5A623;
+    animation: shoot 8s linear infinite;
+}
+
+.shooting-star:nth-child(1) { top: 10%; animation-delay: 0s; }
+.shooting-star:nth-child(2) { top: 30%; animation-delay: 3s; }
+.shooting-star:nth-child(3) { top: 60%; animation-delay: 6s; }
+
+@keyframes shoot {
+    0% { transform: translateX(-100px) translateY(0); opacity: 1; }
+    100% { transform: translateX(calc(100vw + 100px)) translateY(200px); opacity: 0; }
+}
+
+/* Navigation */
+.nav {
+    position: relative;
+    z-index: 10;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 21, 0.6);
+    border-bottom: 1px solid rgba(245, 166, 35, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #F5A623;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #cdd6f4;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: #F5A623;
+}
+
+.btn-launch {
+    background: linear-gradient(135deg, #F5A623, #D4891A);
+    color: #0a0a15;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-launch:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(245, 166, 35, 0.4);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    z-index: 5;
+    padding: 80px 40px 60px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(124, 77, 255, 0.15);
+    color: #A78BFA;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    border: 1px solid rgba(124, 77, 255, 0.3);
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #F5A623 0%, #F472B6 50%, #A78BFA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: #94a3b8;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #F5A623, #D4891A);
+    color: #0a0a15;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 16px rgba(245, 166, 35, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(245, 166, 35, 0.5);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: #cdd6f4;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(245, 166, 35, 0.3);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #F5A623;
+}
+
+.stat-label {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* Features Section */
+.features {
+    position: relative;
+    z-index: 5;
+    padding: 80px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: #F5A623;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 1.1rem;
+    margin-bottom: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.feature-card {
+    background: rgba(26, 26, 46, 0.6);
+    border: 1px solid rgba(245, 166, 35, 0.15);
+    border-radius: 16px;
+    padding: 32px 24px;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(245, 166, 35, 0.4);
+    box-shadow: 0 12px 40px rgba(245, 166, 35, 0.15);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #f0f0f5;
+}
+
+.feature-card p {
+    color: #94a3b8;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Live Demo Section */
+.demo-section {
+    position: relative;
+    z-index: 5;
+    padding: 80px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.demo-container {
+    background: rgba(15, 15, 30, 0.9);
+    border: 1px solid rgba(245, 166, 35, 0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.demo-tabs {
+    background: #1a1a2e;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(245, 166, 35, 0.1);
+}
+
+.tab-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.tab-dot.red { background: #ef4444; }
+.tab-dot.yellow { background: #f59e0b; }
+.tab-dot.green { background: #22c55e; }
+
+.demo-title {
+    margin-left: 12px;
+    color: #F5A623;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.demo-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+}
+
+.demo-code {
+    background: #0f0f1e;
+    padding: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #cdd6f4;
+    white-space: pre;
+    overflow-x: auto;
+    border-right: 1px solid rgba(245, 166, 35, 0.1);
+}
+
+.demo-output {
+    background: #0a0a15;
+    padding: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.demo-output-line {
+    padding: 2px 0;
+}
+
+/* Syntax colors */
+.k { color: #F4B942; font-weight: bold; }
+.s { color: #ff3c00; font-weight: bold; font-style: italic; }
+.b { color: #00ff08; }
+.str { color: #f4b52f; }
+.n { color: #F472B6; }
+.c { color: #525355; font-style: italic; }
+.bool { color: #A78BFA; font-weight: bold; }
+
+.text-normal { color: #4ade80; }
+.text-shine { color: #fef08a; font-weight: 600; }
+.text-glow { color: #f472b6; font-weight: bold; }
+.text-success { color: #4ade80; font-weight: bold; }
+.text-info { color: #60a5fa; }
+
+/* Footer */
+.footer {
+    position: relative;
+    z-index: 5;
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid rgba(245, 166, 35, 0.1);
+    background: rgba(10, 10, 21, 0.5);
+    backdrop-filter: blur(10px);
+    margin-top: 80px;
+}
+
+.footer p {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #F5A623;
+    text-decoration: none;
+}
+
+/* CTA Section */
+.cta {
+    position: relative;
+    z-index: 5;
+    padding: 80px 40px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.cta-box {
+    background: linear-gradient(135deg, rgba(245, 166, 35, 0.1), rgba(124, 77, 255, 0.1));
+    border: 1px solid rgba(245, 166, 35, 0.3);
+    border-radius: 24px;
+    padding: 60px 40px;
+    backdrop-filter: blur(10px);
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #F5A623, #F472B6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cta p {
+    color: #cdd6f4;
+    font-size: 1.15rem;
+    margin-bottom: 32px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .hero p { font-size: 1.1rem; }
+    .demo-body { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .nav { padding: 16px 20px; }
+    .section-title { font-size: 1.75rem; }
+    .hero-stats { gap: 24px; }
+    .stat-number { font-size: 1.8rem; }
+    .cta h2 { font-size: 1.75rem; }
+    .cta-box { padding: 40px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Animated star background -->
+<div class="stars-bg">
+    <div class="stars"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav">
+    <div class="logo">
+        <span class="logo-icon">🌟</span>
+        <span>Littlestar Studio</span>
+    </div>
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#demo">Demo</a>
+        <a href="#about">About</a>
+        <a href="app.html" class="btn-launch">Launch Studio →</a>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-badge">✨ Now with 163+ built-in functions</div>
+    <h1>Write Beautiful Code<br>with Littlestar</h1>
+    <p>A beginner-friendly programming language designed for learning, teaching, and building — with an English-like syntax that just makes sense.</p>
+    <div class="hero-buttons">
+        <a href="app.html" class="btn-primary">
+            <span>🚀</span> Launch Studio
+        </a>
+        <a href="tutorial.html" class="btn-primary">
+            <span>📖</span> Read Tutorial
+        </a>
+        <a href="#demo" class="btn-secondary">
+            <span>▶</span> Watch Demo
+        </a>
+    </div>
+    <div class="hero-stats">
+        <div class="stat">
+            <div class="stat-number">163+</div>
+            <div class="stat-label">Built-in Functions</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">44</div>
+            <div class="stat-label">Keywords</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">128</div>
+            <div class="stat-label">Currencies</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Install Required</div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features" id="features">
+    <h2 class="section-title">Why Littlestar?</h2>
+    <p class="section-subtitle">Everything you need to start coding, right in your browser</p>
+    
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🎓</div>
+            <h3>Beginner-Friendly</h3>
+            <p>English-like syntax with helpful error messages. Perfect for students learning to code for the first time.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">📦</div>
+            <h3>Batteries Included</h3>
+            <p>163+ built-in functions ready to use. No packages, no installs, no configuration — just start coding.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">📐</div>
+            <h3>Math & Science</h3>
+            <p>Geometry, trigonometry, physics constants, quadratic solvers — everything a science student needs.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>Build Web Pages</h3>
+            <p>Create HTML, CSS, and JavaScript directly from Littlestar. Perfect for web design education.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">💰</div>
+            <h3>128 Currencies</h3>
+            <p>Convert between every currency on Earth. Great for real-world math and business projects.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🗄️</div>
+            <h3>Native Databases</h3>
+            <p>Store and query structured data without SQL. Learn database concepts the easy way.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🐛</div>
+            <h3>Debug Mode</h3>
+            <p>See every variable assignment and evaluation in real-time. Understand exactly what your code is doing.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Beautiful Output</h3>
+            <p>Three output styles — display, shine ✨, and glow 🌟 — to make your programs visually engaging.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Live Demo Section -->
+<section class="demo-section" id="demo">
+    <h2 class="section-title">See it in Action</h2>
+    <p class="section-subtitle">Beautiful, readable code that anyone can understand</p>
+    
+    <div class="demo-container">
+        <div class="demo-tabs">
+            <div class="tab-dot red"></div>
+            <div class="tab-dot yellow"></div>
+            <div class="tab-dot green"></div>
+            <div class="demo-title">🌟 hello.lstar</div>
+        </div>
+        <div class="demo-body">
+            <div class="demo-code"><span class="k">module</span> <span class="s">littlestar</span>:
+
+    <span class="s">spark</span> <span class="b">main</span>(<span class="n">1</span>):
+        <span class="c"># Say hello to the world</span>
+        <span class="b">display</span>(<span class="str">"Hello, Littlestar!"</span>)
+        
+        <span class="k">declare</span> name = <span class="str">"Alice"</span>
+        <span class="k">make</span> age = <span class="n">25</span>
+        
+        <span class="b">shine</span>(<span class="str">"Hi {name}!"</span>)
+        <span class="b">display</span>(<span class="str">"You are {age} years old"</span>)
+        
+        <span class="k">when</span> age >= <span class="n">18</span>:
+            <span class="b">glow</span>(<span class="str">"You're an adult!"</span>)
+        <span class="k">otherwise</span>:
+            <span class="b">display</span>(<span class="str">"Still young!"</span>)
+
+    <span class="s">spark</span> print:
+        <span class="b">main</span>(<span class="n">1</span>)</div>
+            <div class="demo-output">
+                <div class="demo-output-line text-info">▶ Running hello.lstar...</div>
+                <div class="demo-output-line text-info">─────────────────────</div>
+                <div class="demo-output-line text-normal">Hello, Littlestar!</div>
+                <div class="demo-output-line text-shine">✨ Hi Alice!</div>
+                <div class="demo-output-line text-normal">You are 25 years old</div>
+                <div class="demo-output-line text-glow">🌟 You're an adult!</div>
+                <div class="demo-output-line text-info">─────────────────────</div>
+                <div class="demo-output-line text-success">✨ Program finished successfully!</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="cta-box">
+        <h2>Ready to Start Coding?</h2>
+        <p>No downloads. No installations. No signup. Just open Littlestar Studio and start writing beautiful code.</p>
+        <a href="app.html" class="btn-primary">
+            <span>🚀</span> Launch Littlestar Studio
+        </a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>🌟 Littlestar Studio · Built with love for beginners · <a href="app.html">Launch App</a></p>
+</footer>
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+}
+</script>
+
+</body>
+</html>

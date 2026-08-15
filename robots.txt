@@ -1,0 +1,9 @@
+# robots.txt for Littlestar
+User-agent: *
+Allow: /
+
+# Point Google to sitemap
+Sitemap: https://paschal6.github.io/littlestar-app/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
