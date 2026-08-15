@@ -6,7 +6,7 @@
   <!-- Homepage / Main App -->
   <url>
     <loc>https://paschal6.github.io/littlestar-app/</loc>
-    <lastmod>2026-08-14</lastmod>
+    <lastmod>2025-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -16,46 +16,30 @@
     </image:image>
   </url>
 
-  <!-- Main Playground / App -->
+  <!-- Playground / Online Code Editor -->
   <url>
     <loc>https://paschal6.github.io/littlestar-app/app.html</loc>
-    <lastmod>2026-08-14</lastmod>
+    <lastmod>2025-08-15</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://paschal6.github.io/littlestar-app/icon-512.png</image:loc>
       <image:title>Littlestar Playground - Online Code Editor</image:title>
-      <image:caption>Write, run, and share Littlestar code in your browser</image:caption>
+      <image:caption>Write, run, and share Littlestar code directly in your browser</image:caption>
     </image:image>
   </url>
 
   <!-- Tutorial / Documentation -->
   <url>
     <loc>https://paschal6.github.io/littlestar-app/tutorial.html</loc>
-    <lastmod>2026-08-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2025-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>https://paschal6.github.io/littlestar-app/icon-512.png</image:loc>
       <image:title>Littlestar Complete Tutorial</image:title>
-      <image:caption>Learn Littlestar programming language from beginner to expert</image:caption>
+      <image:caption>Learn the Littlestar programming language from beginner to expert</image:caption>
     </image:image>
-  </url>
-
-  <!-- Home / Landing (if you have one) -->
-  <url>
-    <loc>https://paschal6.github.io/littlestar-app/index.html</loc>
-    <lastmod>2026-08-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Manifest for PWA -->
-  <url>
-    <loc>https://paschal6.github.io/littlestar-app/manifest.json</loc>
-    <lastmod>2026-08-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
 
 </urlset>
