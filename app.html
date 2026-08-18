@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🌟 Littlestar Playground</title>
   <style>
@@ -188,6 +187,7 @@
       <option value="del">🗑️ Delete</option>
       <option value="strings">📝 Strings</option>
       <option value="contains">🔎 Contains</option>
+      <option value="db">🗄️ Database</option>
     </optgroup>
     <optgroup label="🔁 Control Flow">
       <option value="loops">🔁 Loops</option>
@@ -981,7 +981,15 @@ class Littlestar {
         return c===0?'infinite solutions':'no solution';
       })`,
       simultaneousLinear:`((eq1,eq2)=>{
-        function parse(eq){
+        // Auto-detect the two variables used in the equations
+        const combined=(eq1+eq2).replace(/\\s/g,'');
+        const varMatches=combined.match(/[a-zA-Z]/g)||[];
+        const uniqueVars=[...new Set(varMatches)];
+        if(uniqueVars.length<2)return{error:"Need two different variables"};
+        const var1=uniqueVars[0];
+        const var2=uniqueVars[1];
+        
+        function parse(eq,v1,v2){
           eq=String(eq).replace(/\\s/g,'');
           const parts=eq.split('=');
           const lhs=parts[0],rhs=Number(parts[1])||0;
@@ -989,18 +997,22 @@ class Littlestar {
           const terms=lhs.replace(/-/g,'+-').split('+').filter(t=>t);
           for(const t of terms){
             const s=t.trim();
-            if(s.includes('x')){const c=s.replace('x','').replace(/\\*/g,'')||'1';a+=c==='-'?-1:Number(c);}
-            else if(s.includes('y')){const c=s.replace('y','').replace(/\\*/g,'')||'1';b+=c==='-'?-1:Number(c);}
+            if(s.includes(v1)){const c=s.replace(v1,'').replace(/\\*/g,'')||'1';a+=c==='-'?-1:Number(c);}
+            else if(s.includes(v2)){const c=s.replace(v2,'').replace(/\\*/g,'')||'1';b+=c==='-'?-1:Number(c);}
           }
           return{a,b,c:rhs};
         }
-        const e1=parse(eq1),e2=parse(eq2);
+        const e1=parse(eq1,var1,var2),e2=parse(eq2,var1,var2);
         const det=e1.a*e2.b-e2.a*e1.b;
         if(det===0)return e1.a*e2.c===e2.a*e1.c?'infinite solutions':'no solution';
-        const x=(e1.c*e2.b-e2.c*e1.b)/det;
-        const y=(e1.a*e2.c-e2.a*e1.c)/det;
-        return{x:Math.round(x*1e10)/1e10,y:Math.round(y*1e10)/1e10};
+        const val1=(e1.c*e2.b-e2.c*e1.b)/det;
+        const val2=(e1.a*e2.c-e2.a*e1.c)/det;
+        const result={};
+        result[var1]=Math.round(val1*1e10)/1e10;
+        result[var2]=Math.round(val2*1e10)/1e10;
+        return result;
       })`,
+
       mathset:`((op,...args)=>{
         op=String(op).toLowerCase();
         const toSet=(a)=>Array.isArray(a)?[...new Set(a)]:[...new Set([a])];
@@ -2678,6 +2690,28 @@ const EXAMPLES = {
     spark print:
         main(1)`,
 
+  db: `module littlestar:
+    spark main(1):
+        letarr arr = fetch(student)
+        display(arr)
+        
+
+    spark print:
+        main(1)
+
+module littlestardb:
+    createdb student:
+        student1:
+            name: 'Ken'
+            age: 25
+        student2:
+            name: 'Alice'
+            age: 24
+        student3:
+            name: 'Bob'
+            age: 26
+`,
+
   starPattern:`module littlestar:
 
     spark main(1):
@@ -3032,6 +3066,8 @@ const EXAMPLES = {
     spark print:
         main(1)`,
 
+ 
+
   mathSets:`module littlestar:
 
     spark main(1):
@@ -3077,7 +3113,7 @@ const EXAMPLES = {
         letset X = 1, 2
         letset Y = 3, 4
         display("X × Y = " + mathset("cartesian", X, Y))
-
+      
     spark print:
         main(1)`,
 };
