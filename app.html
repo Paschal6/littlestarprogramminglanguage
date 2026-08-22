@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
   <link href="logo.png" rel="icon" type="image/x-icon" /> 
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🌟 Littlestar Playground</title>
   <style>
@@ -650,8 +650,8 @@
         </div>
       </div>
       <div id="console-view"><span class="out-empty">🌟 Click ▶️ Run to see output</span></div>
-      <iframe id="web-view" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
-    </div>
+      <!-- NEW LINE: -->
+<iframe id="web-view" sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-modals"></iframe>
   </div>
 
   <div id="input-modal">
@@ -694,10 +694,26 @@
       return result;
     }
 
-    function renderWebPreview(html) {
-      const iframe = document.getElementById('web-view');
-      iframe.srcdoc = html || '';
-    }
+function renderWebPreview(html){
+  const iframe = document.getElementById('web-view');
+  if (!html) {
+    iframe.srcdoc = '';
+    return;
+  }
+
+  let modifiedHtml = html;
+
+  // Inject <base target="_blank"> into the HTML so all links open in a new tab
+  if (modifiedHtml.includes('<head>')) {
+    modifiedHtml = modifiedHtml.replace('<head>', '<head><base target="_blank">');
+  } else if (modifiedHtml.includes('<html>')) {
+    modifiedHtml = modifiedHtml.replace('<html>', '<html><head><base target="_blank"></head>');
+  } else {
+    modifiedHtml = '<base target="_blank">' + modifiedHtml;
+  }
+
+  iframe.srcdoc = modifiedHtml;
+}
 
     class Littlestar {
       constructor() {
