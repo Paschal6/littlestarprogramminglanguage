@@ -3,26 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#facc15">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Littlestar">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-
-      <!-- Register Service Worker -->
-      <script>
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker.register('service-worker.js')
-              .then(reg => console.log('🌟 Littlestar PWA ready!'))
-              .catch(err => console.log('SW failed:', err));
-          });
-        }
-      </script>
-<link rel="icon" href="logo.png" type="image/x-icon">
+<link rel="icon" href="icon.png" type="image/x-icon">
 <title>Littlestar Studio 🌟 - Learn Programming the Fun Way</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -528,7 +509,13 @@ body {
             <span>🚀</span> Launch Studio
         </a>
         <a href="tutorial.html" class="btn-primary">
-            <span>📖</span> Read Tutorial
+            <span>📖</span> Read First tutorial
+        </a>
+         <a href="tutorial2.html" class="btn-primary">
+            <span>📖</span> Open Second tutorial
+        </a>
+         <a href="tutorial3.html" class="btn-primary">
+            <span>📖</span> Open Third tutorial
         </a>
         <a href="#demo" class="btn-secondary">
             <span>▶</span> Watch Demo
