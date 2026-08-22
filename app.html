@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <link href="logo.png" rel="icon" type="image/x-icon" /> 
   <meta charset="UTF-8" />
+  <link rel="icon" href="icon.png" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🌟 Littlestar Playground</title>
   <style>
@@ -797,9 +797,11 @@ function renderWebPreview(html){
       }
 
       format(val) {
-        if (val === null || val === undefined) return String(val);
-        if (typeof val === 'string') return val;
-        if (typeof val === 'number' || typeof val === 'boolean') return String(val);
+    if(val===null||val===undefined)return String(val);
+    if(typeof val==='string')return val;
+    if(typeof val==='boolean')return val ? 'yes' : 'no';  // <-- Added this
+    if(typeof val==='number')return String(val);          // <-- Separated this
+    // ...
         if (val && typeof val === 'object' && val.__isImage)
           return '__IMG__' + val.src + '|' + (val.width || '') + '|' + (val.height || '') + '__IMG__';
         if (Array.isArray(val)) {
@@ -1139,6 +1141,18 @@ function renderWebPreview(html){
           'parallelogram', 'rhombus', 'ellipse', 'pentagon', 'hexagon',
           'cube', 'sphere', 'cylinder', 'cone', 'pyramid', 'cuboid', 'prism', 'hemisphere', 'ellipsoid']);
 
+        // NEW: Auto-quote database names so fetch(student) works without quotes
+for (const fn of ['fetch', 'countdb', 'hasdb']) {
+    expr = expr.replace(new RegExp(`\\b${fn}\\s*\\(([^)]+)\\)`, 'g'), (match, args) => {
+        const argStr = args.trim();
+        // If it's just letters/numbers/dots and no quotes, wrap it in quotes
+        if (/^[a-zA-Z0-9_.]+$/.test(argStr) && !argStr.startsWith('"') && !argStr.startsWith("'")) {
+            return `${fn}("${argStr}")`;
+        }
+        return match;
+    });
+}
+
         for (const fn of ['area', 'perimeter', 'volume']) {
           expr = expr.replace(new RegExp(`\\b${fn}\\s*\\(([^)]*)\\)`, 'g'), (match, argsStr) => {
             const args = this.splitArgs(argsStr);
@@ -1285,9 +1299,9 @@ function renderWebPreview(html){
           convert: `((val,fromUnit,toUnit)=>{for(const cat of Object.keys(__unitCats)){const c=__unitCats[cat];if(c[fromUnit]!==undefined&&c[toUnit]!==undefined){return val*c[fromUnit]/c[toUnit];}}return val;})`,
           convertCurrency: `((val,from,to)=>{const f=__curr[from]||1,t=__curr[to]||1;return (val/f)*t;})`,
           comma: `((n)=>{if(typeof n!=='number'||isNaN(n))return String(n);const parts=n.toString().split('.');parts[0]=parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g,',');return parts.join('.');})`,
-          fetch: `((n)=>Array.isArray(n)?n:(__dbs[n]||[]))`,
-          countdb: `((n)=>{const d=__dbs[n];return d?d.length:0;})`,
-          hasdb: `((n)=>__dbs[n]!==undefined)`, listdbs: `(()=>Object.keys(__dbs))`,
+          fetch: `((n)=>{if(Array.isArray(n))return n;let parts=String(n).split('.');let dbName=parts[0];let idx=parts[1]?parseInt(parts[1])-1:-1;let d=__dbs[dbName]||[];return idx>=0?(d[idx]||{}):d;})`,
+countdb: `((n)=>{let dbName=String(n).split('.')[0];const d=__dbs[dbName];return d?d.length:0;})`,
+hasdb: `((n)=>{let dbName=String(n).split('.')[0];return __dbs[dbName]!==undefined;})`, listdbs: `(()=>Object.keys(__dbs))`,
           read: `((f)=>{try{const v=localStorage.getItem("lstar_file_"+f);return v===null?"":v;}catch(e){return "";}})`,
           write: `((f,c)=>{try{localStorage.setItem("lstar_file_"+f,String(c));return true;}catch(e){return false;}})`,
           append: `((f,c)=>{try{const p=localStorage.getItem("lstar_file_"+f)||"";localStorage.setItem("lstar_file_"+f,p+String(c));return true;}catch(e){return false;}})`,
@@ -1553,8 +1567,9 @@ function renderWebPreview(html){
           this.vars[m[1]] = [...new Set(arr)];
           return;
         }
-        m = line.match(/^letarr\s+(\w+)\s*=\s*(.+)$/);
+        m=line.match(/^letarr\s+(\w+)\s*=\s*(.*)$/);
         if (m) {
+          if (m[2].trim() === '') { this.vars[m[1]] = []; return; }
           const raw = m[2].trim();
           try { const r = this.eval(raw); if (Array.isArray(r)) { this.vars[m[1]] = r; return; } } catch (e) { }
           this.vars[m[1]] = this.splitArgs(raw).map(x => this.eval(x.trim())); return;
@@ -1618,10 +1633,14 @@ function renderWebPreview(html){
             while (j < lines.length && (getInd(lines[j]) > ind || !lines[j].trim())) { block.push(lines[j]); j++; }
             let done = false;
             if (cond) { this.execBlockSync(block, ind + 1); done = true; }
-            while (j < lines.length && lines[j].trim() && getInd(lines[j]) === ind) {
+                        while (j < lines.length) {
+              if (!lines[j].trim()) { j++; continue; } // Skip empty blank lines!
+              if (getInd(lines[j]) !== ind) break;     // Break if indentation changes
+              
               const ns = this.stripInlineComment(lines[j].trim()).trim();
               const em = ns.match(/^elif\s+(.+):$/);
               const om = ns.match(/^otherwise\s*:$/);
+              // ... keep your existing elif/otherwise logic here ...
               if (em) {
                 const eb = []; let k = j + 1;
                 while (k < lines.length && (getInd(lines[k]) > ind || !lines[k].trim())) { eb.push(lines[k]); k++; }
